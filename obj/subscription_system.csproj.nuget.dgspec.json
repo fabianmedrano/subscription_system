@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fabia\\source\\repos\\subscription_system\\subscription_system.csproj": {}
+    "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\subscription_system.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fabia\\source\\repos\\subscription_system\\subscription_system.csproj": {
+    "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\subscription_system.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fabia\\source\\repos\\subscription_system\\subscription_system.csproj",
+        "projectUniqueName": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\subscription_system.csproj",
         "projectName": "subscription_system",
-        "projectPath": "C:\\Users\\fabia\\source\\repos\\subscription_system\\subscription_system.csproj",
-        "packagesPath": "C:\\Users\\fabia\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fabia\\source\\repos\\subscription_system\\obj\\",
+        "projectPath": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\subscription_system.csproj",
+        "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\fabia\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -57,8 +57,14 @@
               "version": "[7.0.10, )"
             },
             "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
-              "version": "[7.0.10, )"
+              "version": "[7.0.12, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[7.0.11, )"
             }
           },
           "imports": [
@@ -80,7 +86,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

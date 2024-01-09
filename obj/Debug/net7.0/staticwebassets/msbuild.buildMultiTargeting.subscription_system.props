@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\subscription_system.props" />
+</Project>
