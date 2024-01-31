@@ -94,23 +94,32 @@ namespace subscription_system.Areas.Admin.Controllers
         // GET: Admin/PlanFeatures/Edit/5
         public async Task<IActionResult> Edit(int planId,int? id)
         {
-            Task<Plan> plantask = getPlan(planId);
+          
+
             if (id == null || _context.PlanFeature == null)
             {
                 return NotFound();
             }
+            
+            Task<Plan> plantask = getPlan(planId);
+            Plan plan = await plantask;
 
             var planFeature = await _context.PlanFeature.FindAsync(id);
             if (planFeature == null)
             {
                 return NotFound();
             }
-            Plan plan = await plantask;
+            PlanFeatureViewModel planFeatureViewModel = new PlanFeatureViewModel
+            {
+                Id = planFeature.Id,
+                FeatureId = planFeature.FeatureId,
+                PlanId = planFeature.PlanId,
+            };
             if (plan != null)
                 ViewData["PlanName"] = plan.Name;
-            ViewData["FeatureId"] = new SelectList(_context.Feature, "Id", "Description", planFeature.FeatureId);
+                ViewData["FeatureId"] = new SelectList(_context.Feature, "Id", "Description", planFeature.FeatureId);
             ViewData["PlanId"] = new SelectList(_context.Plan, "Id", "Description", planFeature.PlanId);
-            return View(planFeature);
+            return View(planFeatureViewModel);
         }
 
         // POST: Admin/PlanFeatures/Edit/5
@@ -118,23 +127,30 @@ namespace subscription_system.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,PlanId,FeatureId")] PlanFeature planFeature)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PlanId,FeatureId")] PlanFeatureViewModel planFeatureViewModel)
         {
-            if (id != planFeature.Id)
+            if (id != planFeatureViewModel.Id)
             {
                 return NotFound();
             }
+            PlanFeature planFeature = new PlanFeature
+            {
+                Id = planFeatureViewModel.Id,
+                PlanId = planFeatureViewModel.PlanId,
+                FeatureId = planFeatureViewModel.FeatureId
+            };
 
             if (ModelState.IsValid)
             {
                 try
                 {
+                
                     _context.Update(planFeature);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PlanFeatureExists(planFeature.Id))
+                    if (!PlanFeatureExists(planFeatureViewModel.Id))
                     {
                         return NotFound();
                     }
