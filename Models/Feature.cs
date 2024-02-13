@@ -1,8 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Authorization;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace subscription_system.Models
 {
+
+    [Authorize(Roles = "SystemAdmin")]
     public class Feature
     {
         public int Id { get; set; }

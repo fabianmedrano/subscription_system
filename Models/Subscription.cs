@@ -25,6 +25,7 @@ namespace subscription_system.Models
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; } = DateTime.Now;
         public bool IsTrial { get; set; }
+        public bool IsActive { get; set; }
         public bool Renewal { get; set; }
      
     }

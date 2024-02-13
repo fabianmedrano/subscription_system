@@ -13,6 +13,7 @@ using subscription_system.Data;
 using subscription_system.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Numerics;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace subscription_system.Areas.Admin.Controllers
 {
@@ -124,6 +125,8 @@ namespace subscription_system.Areas.Admin.Controllers
             if (adminPlanCreateViewModel == null)
                 return NotFound();
 
+
+
             AdminPlanViewModel plan = new AdminPlanViewModel{
                 Id = adminPlanCreateViewModel.Id,
                 Name = adminPlanCreateViewModel.Name,
@@ -163,7 +166,13 @@ namespace subscription_system.Areas.Admin.Controllers
                         TrialPeriod = adminPlanCreateViewModel.TrialPeriod
                     };
                     _context.Update(plan);
+                    /* Rastreo de campos distintos*/
+                     List<string> changes=changeTracker(plan);
+
                     await _context.SaveChangesAsync();
+
+
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -222,5 +231,23 @@ namespace subscription_system.Areas.Admin.Controllers
         {
             return (_context.Plan?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        private List<string> changeTracker<T>(T model) where T : class
+        {
+            var entry = _context.Entry(model);
+
+            var changedProperties = new List<string>();
+
+            foreach (var prop in entry.Properties)
+            {
+                if (prop.IsModified)
+                {
+                    changedProperties.Add(prop.Metadata.Name);
+                }
+            }
+            return changedProperties;
+        }
     }
+
+
 }

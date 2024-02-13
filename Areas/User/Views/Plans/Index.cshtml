@@ -1,0 +1,46 @@
+﻿@model IEnumerable<subscription_system.Models.Plan>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<!-- -->
+<div class="container">
+    <div class="card-deck  text-center ">
+        @foreach (var item in Model)
+        {
+        
+            <div class="card box-shadow "  >
+                <div class="card-header">
+                    @Html.DisplayFor(modelItem => item.Name)
+                </div>
+                <div class="card-body">
+                    <h1 class="card-title pricing-card-title"> @Html.DisplayFor(modelItem => item.Price)
+                    <small class="text-muted">/mo</small>
+                    </h1>
+                    <p class="card-text">@Html.DisplayFor(modelItem => item.Description)</p>
+                    <ul class="list-unstyled mt-3 mb-4">
+                        <li>
+                            @Html.DisplayFor(modelItem => item.BillingPeriod)
+                        </li>
+                        <li>
+                            @Html.DisplayFor(modelItem => item.TrialPeriod)
+                        </li>
+                    </ul>
+                    <a type="button" class="btn btn-lg btn-block btn-primary"  asp-action="Subscribe" asp-route-planId="@item.Id">Delete</a>
+                </div>
+            </div>
+        
+        }
+    </div>
+</div>
+
+
+
+
