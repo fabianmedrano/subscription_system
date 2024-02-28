@@ -55,7 +55,7 @@ namespace subscription_system.Areas.Admin.Controllers
                 //TODO:ESTA PARTE DEL CODIGO DEBE DE MEJORAR
       Id = plan!.Id,
       Name = plan!.Name,
-       Description = plan!.Name,
+                Description = plan!.Name,
                 Price = plan!.Price,
                 Active = plan!.Active,
 
