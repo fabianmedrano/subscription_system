@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using subscription_system.Areas.Admin.Models.ViewModel.Plan;
+using subscription_system.Areas.Admin.Models.ViewModel.Feature;
 
 namespace subscription_system.Areas.Admin.Models.ViewModel.PlanFeature
 {
@@ -16,7 +17,7 @@ namespace subscription_system.Areas.Admin.Models.ViewModel.PlanFeature
         public int PlanId { get; set; }
         public PlanViewModel Plan { get; set; }
 
-        public PlanFeatureViewModel Feature { get; set; }
+        public FeatureViewModel Feature { get; set; }
 
     }
 

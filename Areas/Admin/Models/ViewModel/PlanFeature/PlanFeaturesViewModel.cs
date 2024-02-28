@@ -1,4 +1,6 @@
-﻿using subscription_system.Models;
+﻿using Microsoft.Extensions.Hosting;
+using subscription_system.Areas.Admin.Models.ViewModel.Feature;
+using subscription_system.Models;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -53,8 +55,7 @@ namespace subscription_system.Areas.Admin.Models.ViewModel.PlanFeature
         ]
         public int TrialPeriod { set; get; } = 0;
 
-        [ForeignKey("Feature")]
-        public int FeatureId { get; set; }
-        public PlanFeatureViewModel Feature { get; set; }
+ 
+        public ICollection<FeatureViewModel> Features { get; set; } = new List<FeatureViewModel>();
     }
 }

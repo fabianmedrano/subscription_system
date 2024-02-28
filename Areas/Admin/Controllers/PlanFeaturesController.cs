@@ -15,6 +15,8 @@ using Microsoft.Extensions.Logging;
 using Riok.Mapperly;
 using subscription_system.Mapper;
 using static NuGet.Packaging.PackagingConstants;
+using subscription_system.Areas.Admin.Models.ViewModel.Feature;
+using System.ComponentModel.DataAnnotations;
 namespace subscription_system.Areas.Admin.Controllers
 {
 
@@ -34,18 +36,10 @@ namespace subscription_system.Areas.Admin.Controllers
         public async Task<IActionResult> Index(int planId)
         {
             Task<Plan> plantask = getPlan(planId);
-            //TODO: la  idea aqui es carchar la informacion del plan y lisego la lista de caracteristicas en el  mismo view model
-            //NOTE:cambio de planes, avoy a hacer las consultas  porseparado y le asigno los  valores al view model de esta vista
-
-
-            /*  var result = await _context.Plan.Join(_context.PlanFeature, p => p.Id,pf => pf.PlanId, (p, pf) =>
-              new { p.Name,p.Description, p.Price, pf.FeatureId }).Join(_context.Feature, pf=>pf.FeatureId, f => f.Id,(pf ,f)=>pf.p.Name, p.Description, p.Price, pf.FeatureId).ToListAsync();
-            */
+       
             var applicationDbContext = _context.Feature
                 .Join(_context.PlanFeature,  f=> f.Id ,pf=> pf.PlanId, (f, pf) => new { f.Id,f.Description,f.Name, pf.PlanId })
-                .Where(p => p.PlanId == planId).Select( (f) => new { f.Name,f.Description,f.Id} );
-
-          
+                .Where(p => p.PlanId == planId).Select( (f) => new Feature { Id = f.Id,Name =f.Name,Description =f.Description} );
 
 
             Plan plan = await plantask;
@@ -56,10 +50,22 @@ namespace subscription_system.Areas.Admin.Controllers
 
             PlanFeatureMapper map =new PlanFeatureMapper();
             var planFeatureView = (planFeature != null)?map.mapList(planFeature): new List<FeatureViewModel>();
-            
-         
-            
-            return View(planFeatureView!);
+            PlanFeaturesViewModel PlanFeaturesViewModel = new PlanFeaturesViewModel
+            {
+                //TODO:ESTA PARTE DEL CODIGO DEBE DE MEJORAR
+      Id = plan!.Id,
+      Name = plan!.Name,
+       Description = plan!.Name,
+                Price = plan!.Price,
+                Active = plan!.Active,
+
+                BillingPeriod = plan!.BillingPeriod,
+
+                TrialPeriod  = plan!.TrialPeriod,
+
+                Features = planFeatureView
+            };
+            return View(PlanFeaturesViewModel!);
         }
 
         // GET: Admin/PlanFeatures/Details/5
