@@ -70,6 +70,10 @@
               "target": "Package",
               "version": "[7.0.11, )"
             },
+            "Riok.Mapperly": {
+              "target": "Package",
+              "version": "[3.4.0, )"
+            },
             "SweetAlert": {
               "target": "Package",
               "version": "[1.0.0, )"

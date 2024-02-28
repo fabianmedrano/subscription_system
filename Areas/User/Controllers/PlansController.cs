@@ -66,21 +66,21 @@ namespace subscription_system.Areas.User.Controllers
         // GET: Admin/Features/Delete/5
         public async Task<IActionResult> Subscribe(int userId, int planId)
         {
-            Alert("Tu subscripción se a realizado con exito", Enums.NotificationType.Success, "Existo");
+            Alert(Enums.NotificationType.Success, "Tu subscripción se a realizado con exito",  "Existo");
 
-          /*  if (planId == null || _context.Feature == null)
-            {
-                return NotFound();
-            }
+            /*  if (planId == null || _context.Feature == null)
+              {
+                  return NotFound();
+              }
 
-            var feature = await _context.Subscriptions
-                .FirstOrDefaultAsync(m => m.Id == planId);
-            if (feature == null)
-            {
-                return NotFound();
-            }
-          */
-            return View(/*feature*/);
+              var feature = await _context.Subscriptions
+                  .FirstOrDefaultAsync(m => m.Id == planId);
+              if (feature == null)
+              {
+                  return NotFound();
+              }
+            */
+            return RedirectToAction(nameof(Index),"Dashboard");
         }
 
         // POST: Admin/Features/Delete/5

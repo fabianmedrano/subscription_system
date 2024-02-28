@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using subscription_system.Areas.Admin.Models.ViewModel;
+using subscription_system.Areas.Admin.Models.ViewModel.PlanHistory;
 using subscription_system.Data;
 using subscription_system.Models;
 

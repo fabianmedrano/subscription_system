@@ -13,6 +13,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\js\\alerts.js",
+      "PackagePath": "staticwebassets\\js\\alerts.js"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
@@ -243,6 +247,746 @@
     {
       "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\build.css",
+      "PackagePath": "staticwebassets\\lib\\octicons\\build.css"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\alert.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\alert.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\archive.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\archive.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\arrow-both.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\arrow-both.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\arrow-down.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\arrow-down.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\arrow-left.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\arrow-left.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\arrow-right.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\arrow-right.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\arrow-small-down.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\arrow-small-down.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\arrow-small-left.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\arrow-small-left.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\arrow-small-right.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\arrow-small-right.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\arrow-small-up.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\arrow-small-up.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\arrow-up.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\arrow-up.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\beaker.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\beaker.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\bell.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\bell.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\bold.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\bold.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\book.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\book.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\bookmark.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\bookmark.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\briefcase.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\briefcase.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\broadcast.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\broadcast.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\browser.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\browser.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\bug.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\bug.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\calendar.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\calendar.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\check.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\check.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\checklist.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\checklist.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\chevron-down.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\chevron-down.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\chevron-left.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\chevron-left.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\chevron-right.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\chevron-right.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\chevron-up.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\chevron-up.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\circle-slash.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\circle-slash.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\circuit-board.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\circuit-board.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\clippy.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\clippy.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\clock.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\clock.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\cloud-download.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\cloud-download.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\cloud-upload.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\cloud-upload.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\code.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\code.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\comment-discussion.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\comment-discussion.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\comment.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\comment.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\credit-card.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\credit-card.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\dash.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\dash.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\dashboard.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\dashboard.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\database.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\database.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\desktop-download.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\desktop-download.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\device-camera-video.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\device-camera-video.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\device-camera.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\device-camera.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\device-desktop.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\device-desktop.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\device-mobile.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\device-mobile.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\diff-added.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\diff-added.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\diff-ignored.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\diff-ignored.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\diff-modified.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\diff-modified.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\diff-removed.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\diff-removed.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\diff-renamed.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\diff-renamed.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\diff.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\diff.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\ellipsis.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\ellipsis.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\eye-closed.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\eye-closed.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\eye.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\eye.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\file-binary.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\file-binary.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\file-code.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\file-code.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\file-directory.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\file-directory.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\file-media.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\file-media.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\file-pdf.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\file-pdf.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\file-submodule.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\file-submodule.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\file-symlink-directory.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\file-symlink-directory.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\file-symlink-file.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\file-symlink-file.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\file-zip.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\file-zip.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\file.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\file.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\flame.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\flame.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\fold-down.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\fold-down.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\fold-up.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\fold-up.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\fold.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\fold.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\gear.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\gear.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\gift.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\gift.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\gist-secret.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\gist-secret.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\gist.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\gist.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\git-branch.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\git-branch.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\git-commit.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\git-commit.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\git-compare.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\git-compare.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\git-merge.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\git-merge.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\git-pull-request.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\git-pull-request.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\github-action.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\github-action.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\globe.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\globe.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\grabber.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\grabber.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\graph.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\graph.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\heart.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\heart.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\history.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\history.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\home.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\home.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\horizontal-rule.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\horizontal-rule.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\hubot.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\hubot.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\inbox.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\inbox.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\info.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\info.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\issue-closed.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\issue-closed.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\issue-opened.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\issue-opened.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\issue-reopened.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\issue-reopened.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\italic.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\italic.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\jersey.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\jersey.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\kebab-horizontal.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\kebab-horizontal.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\kebab-vertical.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\kebab-vertical.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\key.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\key.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\keyboard.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\keyboard.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\law.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\law.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\light-bulb.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\light-bulb.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\link-external.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\link-external.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\link.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\link.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\list-ordered.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\list-ordered.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\list-unordered.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\list-unordered.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\location.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\location.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\lock.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\lock.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\logo-gist.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\logo-gist.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\logo-github.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\logo-github.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\mail-read.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\mail-read.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\mail.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\mail.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\mark-github.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\mark-github.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\markdown.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\markdown.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\megaphone.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\megaphone.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\mention.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\mention.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\milestone.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\milestone.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\mirror.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\mirror.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\mortar-board.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\mortar-board.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\mute.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\mute.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\no-newline.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\no-newline.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\note.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\note.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\octoface.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\octoface.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\organization.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\organization.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\package.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\package.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\paintcan.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\paintcan.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\pencil.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\pencil.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\person.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\person.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\pin.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\pin.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\play.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\play.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\plug.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\plug.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\plus-small.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\plus-small.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\plus.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\plus.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\primitive-dot.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\primitive-dot.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\primitive-square.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\primitive-square.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\project.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\project.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\pulse.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\pulse.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\question.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\question.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\quote.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\quote.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\radio-tower.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\radio-tower.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\reply.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\reply.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\repo-clone.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\repo-clone.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\repo-force-push.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\repo-force-push.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\repo-forked.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\repo-forked.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\repo-pull.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\repo-pull.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\repo-push.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\repo-push.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\repo.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\repo.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\report.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\report.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\request-changes.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\request-changes.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\rocket.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\rocket.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\rss.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\rss.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\ruby.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\ruby.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\screen-full.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\screen-full.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\screen-normal.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\screen-normal.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\search.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\search.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\server.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\server.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\settings.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\settings.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\shield.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\shield.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\sign-in.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\sign-in.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\sign-out.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\sign-out.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\smiley.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\smiley.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\squirrel.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\squirrel.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\star.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\star.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\stop.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\stop.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\sync.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\sync.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\tag.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\tag.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\tasklist.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\tasklist.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\telescope.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\telescope.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\terminal.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\terminal.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\text-size.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\text-size.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\three-bars.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\three-bars.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\thumbsdown.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\thumbsdown.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\thumbsup.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\thumbsup.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\tools.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\tools.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\trashcan.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\trashcan.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\triangle-down.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\triangle-down.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\triangle-left.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\triangle-left.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\triangle-right.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\triangle-right.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\triangle-up.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\triangle-up.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\unfold.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\unfold.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\unmute.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\unmute.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\unverified.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\unverified.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\verified.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\verified.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\versions.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\versions.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\watch.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\watch.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\x.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\x.svg"
+    },
+    {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\octicons\\svg\\zap.svg",
+      "PackagePath": "staticwebassets\\lib\\octicons\\svg\\zap.svg"
     },
     {
       "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\lib\\sweetalert2\\sweetalert2.all.js",

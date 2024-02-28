@@ -7,20 +7,24 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using subscription_system.Areas.Admin.Models.ViewModel;
 using subscription_system.Data;
+using subscription_system.Extensions;
 using subscription_system.Models;
-
+using subscription_system.Areas.Admin.Models.ViewModel.PlanFeature;
+using Microsoft.Extensions.Logging;
+using Riok.Mapperly;
+using subscription_system.Mapper;
+using static NuGet.Packaging.PackagingConstants;
 namespace subscription_system.Areas.Admin.Controllers
 {
 
-    [Authorize(Roles = "SystemAdmin")]
+    //   [Authorize(Roles = "SystemAdmin")]
     [Area("Admin")]
     [Route("Admin/Plan/{planId}/PlanFeatures/{action}/{id?}")]
-    public class PlanFeaturesController : Controller
+    public class PlanFeaturesController : BaseController
     {
         private readonly ApplicationDbContext _context;
-
+        
         public PlanFeaturesController(ApplicationDbContext context)
         {
             _context = context;
@@ -30,11 +34,32 @@ namespace subscription_system.Areas.Admin.Controllers
         public async Task<IActionResult> Index(int planId)
         {
             Task<Plan> plantask = getPlan(planId);
-            var applicationDbContext = _context.PlanFeature.Include(p => p.Feature).Include(p => p.Plan).Where(p=> p.PlanId == planId);
+            //TODO: la  idea aqui es carchar la informacion del plan y lisego la lista de caracteristicas en el  mismo view model
+            //NOTE:cambio de planes, avoy a hacer las consultas  porseparado y le asigno los  valores al view model de esta vista
+
+
+            /*  var result = await _context.Plan.Join(_context.PlanFeature, p => p.Id,pf => pf.PlanId, (p, pf) =>
+              new { p.Name,p.Description, p.Price, pf.FeatureId }).Join(_context.Feature, pf=>pf.FeatureId, f => f.Id,(pf ,f)=>pf.p.Name, p.Description, p.Price, pf.FeatureId).ToListAsync();
+            */
+            var applicationDbContext = _context.Feature
+                .Join(_context.PlanFeature,  f=> f.Id ,pf=> pf.PlanId, (f, pf) => new { f.Id,f.Description,f.Name, pf.PlanId })
+                .Where(p => p.PlanId == planId).Select( (f) => new { f.Name,f.Description,f.Id} );
+
+          
+
+
             Plan plan = await plantask;
             if (plan != null)
                 ViewData["PlanName"] = plan.Name;
-            return View(await applicationDbContext.ToListAsync());
+
+            var planFeature = await applicationDbContext.ToListAsync();
+
+            PlanFeatureMapper map =new PlanFeatureMapper();
+            var planFeatureView = (planFeature != null)?map.mapList(planFeature): new List<FeatureViewModel>();
+            
+         
+            
+            return View(planFeatureView!);
         }
 
         // GET: Admin/PlanFeatures/Details/5
@@ -80,7 +105,7 @@ namespace subscription_system.Areas.Admin.Controllers
             
             if (ModelState.IsValid)
             {
-                PlanFeature planFeature = new PlanFeature
+                PlanFeatureViewModel planFeature = new PlanFeatureViewModel
                 {
                     PlanId = planId,
                     FeatureId = model.FeatureId
@@ -95,33 +120,46 @@ namespace subscription_system.Areas.Admin.Controllers
         }
 
         // GET: Admin/PlanFeatures/Edit/5
-        public async Task<IActionResult> Edit(int planId,int? id)
+        public async Task<IActionResult> Edit(int planId, int? id)
         {
-          
-
             if (id == null || _context.PlanFeature == null)
             {
                 return NotFound();
             }
+
+
+            ViewData["FeatureId"] = new SelectList(_context.Feature, "Id", "Description");
             
             Task<Plan> plantask = getPlan(planId);
             Plan plan = await plantask;
+            if (plan != null)
+                ViewData["PlanName"] = plan.Name;
+
 
             var planFeature = await _context.PlanFeature.FindAsync(id);
             if (planFeature == null)
             {
                 return NotFound();
             }
+
             PlanFeatureViewModel planFeatureViewModel = new PlanFeatureViewModel
             {
                 Id = planFeature.Id,
                 FeatureId = planFeature.FeatureId,
                 PlanId = planFeature.PlanId,
             };
+            
+            
+            
             if (plan != null)
                 ViewData["PlanName"] = plan.Name;
                 ViewData["FeatureId"] = new SelectList(_context.Feature, "Id", "Description", planFeature.FeatureId);
             ViewData["PlanId"] = new SelectList(_context.Plan, "Id", "Description", planFeature.PlanId);
+
+          
+
+
+
             return View(planFeatureViewModel);
         }
 

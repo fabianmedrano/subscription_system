@@ -8,17 +8,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
-using subscription_system.Areas.Admin.Models.ViewModel;
 using subscription_system.Data;
 using subscription_system.Models;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Numerics;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using subscription_system.Extensions;
+using subscription_system.Areas.Admin.Models.ViewModel.Plan;
 
 namespace subscription_system.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class PlansController : Controller
+    public class PlansController : BaseController
     {
         private readonly ApplicationDbContext _context;
 
@@ -34,12 +35,12 @@ namespace subscription_system.Areas.Admin.Controllers
             
             var plans = await _context.Plan.ToListAsync();
 
-            List<AdminPlanViewModel> plansModel = new List<AdminPlanViewModel>();
+            List<PlanViewModel> plansModel = new List<PlanViewModel>();
 
             foreach (var item in plans)
             {
 
-                AdminPlanViewModel plan = new AdminPlanViewModel
+                PlanViewModel plan = new PlanViewModel
                 {
                     Id = item.Id,
                     Name = item.Name,
@@ -68,7 +69,7 @@ namespace subscription_system.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            AdminPlanViewModel adminPlanCreateViewModel = new AdminPlanViewModel
+            PlanViewModel adminPlanCreateViewModel = new PlanViewModel
             {
                 Id = plan.Id,
                 Name = plan.Name,
@@ -93,7 +94,7 @@ namespace subscription_system.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,Active,BillingPeriod,TrialPeriod")] AdminPlanViewModel adminPlanCreateViewModel)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,Active,BillingPeriod,TrialPeriod")] PlanViewModel adminPlanCreateViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -108,7 +109,7 @@ namespace subscription_system.Areas.Admin.Controllers
                 };
                 _context.Add(plan);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), "PlanFeatures", new { area = "Admin", planId = plan.Id });
             }
             return View(adminPlanCreateViewModel);
         }
@@ -127,7 +128,7 @@ namespace subscription_system.Areas.Admin.Controllers
 
 
 
-            AdminPlanViewModel plan = new AdminPlanViewModel{
+            PlanViewModel plan = new PlanViewModel{
                 Id = adminPlanCreateViewModel.Id,
                 Name = adminPlanCreateViewModel.Name,
                 Description = adminPlanCreateViewModel.Description,
@@ -144,7 +145,7 @@ namespace subscription_system.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Active,BillingPeriod,TrialPeriod")] AdminPlanViewModel adminPlanCreateViewModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Active,BillingPeriod,TrialPeriod")] PlanViewModel adminPlanCreateViewModel)
         {
             if (id != adminPlanCreateViewModel.Id)
             {
@@ -193,40 +194,30 @@ namespace subscription_system.Areas.Admin.Controllers
         // GET: Admin/AdminPlanCreateViewModels/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Plan == null)
-            {
-                return NotFound();
-            }
-
-            var plan = await _context.Plan
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (plan == null)
-            {
-                return NotFound();
-            }
-
-            return View(plan);
-        }
-
-        // POST: Admin/AdminPlanCreateViewModels/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.AdminPlanCreateViewModel == null)
+             if (_context.AdminPlanCreateViewModel == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.AdminPlanCreateViewModel'  is null.");
             }
+              
             var Plan = await _context.Plan.FindAsync(id);
-            if (Plan != null)
+            if (Plan == null)
             {
-                _context.Plan.Remove(Plan);
+                return NotFound();
             }
 
+            bool exist = await _context.Subscriptions.AnyAsync(s => s.PlanId == id);
+            if (exist) Alert(Enums.NotificationType.Error, "No es posible eliminar el plan, debido aque existen subscripciones activas con este","Accion no disponible");
+            
+            _context.Plan.Remove(Plan);
             await _context.SaveChangesAsync();
+            
+
+            Alert(Enums.NotificationType.Success,"Plan eliminado correctamente" );
             return RedirectToAction(nameof(Index));
         }
 
+        // POST: Admin/AdminPlanCreateViewModels/Delete/5
+      
         private bool AdminPlanCreateViewModelExists(int id)
         {
             return (_context.Plan?.Any(e => e.Id == id)).GetValueOrDefault();

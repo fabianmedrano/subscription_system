@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using subscription_system.Models;
-using subscription_system.Areas.Admin.Models.ViewModel;
+using subscription_system.Areas.Admin.Models.ViewModel.Plan;
+using subscription_system.Areas.Admin.Models.ViewModel.PlanHistory;
 
 namespace subscription_system.Data
 {
@@ -21,7 +22,7 @@ namespace subscription_system.Data
             : base(options)
         {
         }
-        public DbSet<subscription_system.Areas.Admin.Models.ViewModel.AdminPlanViewModel> AdminPlanCreateViewModel { get; set; } = default!;
-        public DbSet<subscription_system.Areas.Admin.Models.ViewModel.AdminPlanHistoryViewModel> AdminPlanHistoryViewModel { get; set; } = default!;
+        public DbSet<PlanViewModel> AdminPlanCreateViewModel { get; set; } = default!;
+        public DbSet<AdminPlanHistoryViewModel> AdminPlanHistoryViewModel { get; set; } = default!;
     }
 }

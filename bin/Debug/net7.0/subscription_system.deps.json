@@ -15,6 +15,7 @@
           "Microsoft.EntityFrameworkCore.Sqlite": "7.0.15",
           "Microsoft.EntityFrameworkCore.Tools": "7.0.15",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "7.0.11",
+          "Riok.Mapperly": "3.4.0",
           "SweetAlert": "1.0.0"
         },
         "runtime": {
@@ -1795,6 +1796,14 @@
           "lib/netstandard2.0/NuGet.Versioning.dll": {
             "assemblyVersion": "6.6.1.2",
             "fileVersion": "6.6.1.2"
+          }
+        }
+      },
+      "Riok.Mapperly/3.4.0": {
+        "runtime": {
+          "lib/netstandard2.0/Riok.Mapperly.Abstractions.dll": {
+            "assemblyVersion": "3.4.0.0",
+            "fileVersion": "3.4.0.0"
           }
         }
       },
@@ -3729,6 +3738,13 @@
       "sha512": "sha512-Wm/AOFICTIrCgbVxv9dNWusraTzcggbo5W4ao7hD8NNVq911an9TGwW+uNuYc8I5PkpTeMuSXneV2u6hbi1P4w==",
       "path": "nuget.versioning/6.6.1",
       "hashPath": "nuget.versioning.6.6.1.nupkg.sha512"
+    },
+    "Riok.Mapperly/3.4.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bTxBEQ0+2x816IL78Fv0B/KkaGRtzfisit9dfWTfa7jjjwMMzpMW9A+V/hyxqHdJtYvtDL6dUNMLJige4zxJvw==",
+      "path": "riok.mapperly/3.4.0",
+      "hashPath": "riok.mapperly.3.4.0.nupkg.sha512"
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "type": "package",

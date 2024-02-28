@@ -1,4 +1,4 @@
-﻿@model IEnumerable<subscription_system.Areas.Admin.Models.ViewModel.AdminPlanHistoryViewModel>
+﻿@model IEnumerable<subscription_system.Areas.Admin.Models.ViewModel.PlanHistory.AdminPlanHistoryViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -45,7 +45,7 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirmAlert();" data-mjs="mensaje" data-title="Título personalizado" data-type="success">Delete</a>
             </td>
         </tr>
 }

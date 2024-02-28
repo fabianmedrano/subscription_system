@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "T9OUh6HqJxwRcaA67k7p8Xj1Htcd6wXhPAlfFuMWkS0h/HSHhL7vnfWhFEGWfHZfME5q78aXyzXLarLciyw3mg==",
+  "dgSpecHash": "pCTxQETqCTeejwf5zDL4XUssf3BiczpuSwfBbHNkqX84nhQKPViDDsQtA1AuDVU/muEJR2Yh3OLqi5lTxwA84A==",
   "success": true,
   "projectFilePath": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\subscription_system.csproj",
   "expectedPackageFiles": [
@@ -138,6 +138,7 @@
     "C:\\Users\\Usuario\\.nuget\\packages\\nuget.projectmodel\\6.6.1\\nuget.projectmodel.6.6.1.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\nuget.protocol\\6.6.1\\nuget.protocol.6.6.1.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\nuget.versioning\\6.6.1\\nuget.versioning.6.6.1.nupkg.sha512",
+    "C:\\Users\\Usuario\\.nuget\\packages\\riok.mapperly\\3.4.0\\riok.mapperly.3.4.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.debian.8-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.23-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",
     "C:\\Users\\Usuario\\.nuget\\packages\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl\\4.3.0\\runtime.fedora.24-x64.runtime.native.system.security.cryptography.openssl.4.3.0.nupkg.sha512",

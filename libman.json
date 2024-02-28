@@ -5,6 +5,10 @@
     {
       "library": "sweetalert2@11.10.5",
       "destination": "wwwroot/lib/sweetalert2/"
+    },
+    {
+      "library": "octicons@8.5.0",
+      "destination": "wwwroot/lib/octicons/"
     }
   ]
 }

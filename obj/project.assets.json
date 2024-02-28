@@ -2318,6 +2318,22 @@
           "lib/netstandard2.0/NuGet.Versioning.dll": {}
         }
       },
+      "Riok.Mapperly/3.4.0": {
+        "type": "package",
+        "compile": {
+          "lib/netstandard2.0/Riok.Mapperly.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/netstandard2.0/Riok.Mapperly.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "build/Riok.Mapperly.targets": {}
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -7704,6 +7720,30 @@
         "nuget.versioning.nuspec"
       ]
     },
+    "Riok.Mapperly/3.4.0": {
+      "sha512": "bTxBEQ0+2x816IL78Fv0B/KkaGRtzfisit9dfWTfa7jjjwMMzpMW9A+V/hyxqHdJtYvtDL6dUNMLJige4zxJvw==",
+      "type": "package",
+      "path": "riok.mapperly/3.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "analyzers/roslyn4.0/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.0/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.4/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.4/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.5/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.5/dotnet/cs/Riok.Mapperly.dll",
+        "analyzers/roslyn4.7/dotnet/cs/Riok.Mapperly.Abstractions.dll",
+        "analyzers/roslyn4.7/dotnet/cs/Riok.Mapperly.dll",
+        "build/Riok.Mapperly.targets",
+        "lib/netstandard2.0/Riok.Mapperly.Abstractions.dll",
+        "lib/netstandard2.0/Riok.Mapperly.Abstractions.xml",
+        "logo.png",
+        "riok.mapperly.3.4.0.nupkg.sha512",
+        "riok.mapperly.nuspec"
+      ]
+    },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
       "sha512": "HdSSp5MnJSsg08KMfZThpuLPJpPwE5hBXvHwoKWosyHHfe8Mh5WKT0ylEOf6yNzX6Ngjxe4Whkafh5q7Ymac4Q==",
       "type": "package",
@@ -12001,6 +12041,7 @@
       "Microsoft.EntityFrameworkCore.Sqlite >= 7.0.15",
       "Microsoft.EntityFrameworkCore.Tools >= 7.0.15",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 7.0.11",
+      "Riok.Mapperly >= 3.4.0",
       "SweetAlert >= 1.0.0"
     ]
   },
@@ -12072,6 +12113,10 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[7.0.11, )"
+          },
+          "Riok.Mapperly": {
+            "target": "Package",
+            "version": "[3.4.0, )"
           },
           "SweetAlert": {
             "target": "Package",

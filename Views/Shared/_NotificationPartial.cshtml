@@ -3,13 +3,9 @@
 *@
 @{
 }
-<h1>Notification</h1>
-
-<h3>Message: @TempData["notification"]</h3>
  
 <script>
-    @if (TempData.ContainsKey("notification") && TempData["notification"] != null) Html.Raw(TempData.Peek("notification"));
-     
-    
-    
-</script>
+    window.onload = function () {
+        @Html.Raw(@TempData["notification"]);
+    };
+   </script>
