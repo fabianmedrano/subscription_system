@@ -1,11 +1,19 @@
 
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using subscription_system.Data;
 using subscription_system.Data.SeedData;
 using subscription_system.Middleware;
 using subscription_system.Models;
+using subscription_system.TagHelpers;
+
+//TODO: inyectar dependencia , para poder utilizar IHTML
+//NOTE: investicar como se inyectan dependencias
+/*
+ services.AddTransient<CustomTagHelper>();
+ */
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -36,6 +44,8 @@ builder.Services.AddSession(options =>
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
+
+
 
 builder.Services.Configure<IdentityOptions>(options =>
 {

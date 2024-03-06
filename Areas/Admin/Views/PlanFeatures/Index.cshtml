@@ -105,6 +105,23 @@
             </table>
         </div>
     </div>
+   <!-- NOTE:INVERTIGAR COMO INDEPENDIZAR ESTA PARTE DEL CODIGO DE LO DEMAS -->
+    <strong>Marketing:</strong><email mail-to="Marketing"></email>
+    <modal id-modal="myModal" title-modal="putos todos" size="lg">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="FeatureId" class="control-label"></label>
+                <select asp-for="FeatureId" class="form-control" asp-items="ViewBag.FeatureId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </modal>
+
+
 </div>
 
 
