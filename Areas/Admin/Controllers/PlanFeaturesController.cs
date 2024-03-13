@@ -17,6 +17,8 @@ using subscription_system.Mapper;
 using static NuGet.Packaging.PackagingConstants;
 using subscription_system.Areas.Admin.Models.ViewModel.Feature;
 using System.ComponentModel.DataAnnotations;
+using subscription_system.Areas.Admin.Models.ViewModel.Plan;
+using Microsoft.AspNetCore.Http.HttpResults;
 namespace subscription_system.Areas.Admin.Controllers
 {
 
@@ -26,45 +28,51 @@ namespace subscription_system.Areas.Admin.Controllers
     public class PlanFeaturesController : BaseController
     {
         private readonly ApplicationDbContext _context;
-        
-        public PlanFeaturesController(ApplicationDbContext context)
+        private readonly  ILogger<PlanFeaturesController> _logger;
+        public PlanFeaturesController(ApplicationDbContext context, ILogger<PlanFeaturesController> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         // GET: Admin/PlanFeatures
         public async Task<IActionResult> Index(int planId)
         {
+
+            //NOTE:get plan data
             Task<Plan> plantask = getPlan(planId);
-       
-            var applicationDbContext = _context.Feature
-                .Join(_context.PlanFeature,  f=> f.Id ,pf=> pf.PlanId, (f, pf) => new { f.Id,f.Description,f.Name, pf.PlanId })
-                .Where(p => p.PlanId == planId).Select( (f) => new Feature { Id = f.Id,Name =f.Name,Description =f.Description} );
-
-
             Plan plan = await plantask;
             if (plan != null)
                 ViewData["PlanName"] = plan.Name;
 
-            var planFeature = await applicationDbContext.ToListAsync();
+            //NOTE: get plan feature 
+            var applicationDbContext = _context.Feature
+                .Join(_context.PlanFeature, f => f.Id, pf => pf.FeatureId, (f, pf) => new { pf.Id, f.Description, f.Name, pf.PlanId })
+                .Where(p => p.PlanId == planId).Select((f) => new FeatureViewModel { Id = f.Id, Name = f.Name, Description = f.Description });
 
-            PlanFeatureMapper map =new PlanFeatureMapper();
-            var planFeatureView = (planFeature != null)?map.mapList(planFeature): new List<FeatureViewModel>();
+            var planFeatureView = await applicationDbContext.ToListAsync();
+
+            //NOTE: esto espara el modal
+            ViewData["FeatureId"] = new SelectList(_context.Feature, "Id", "Description");
+
             PlanFeaturesViewModel PlanFeaturesViewModel = new PlanFeaturesViewModel
             {
-                //TODO:ESTA PARTE DEL CODIGO DEBE DE MEJORAR
-      Id = plan!.Id,
-      Name = plan!.Name,
-                Description = plan!.Name,
-                Price = plan!.Price,
-                Active = plan!.Active,
+                //OPTIMIZE:ESTA PARTE DEL CODIGO DEBE DE MEJORAR
+                Plan = new PlanViewModel {
+                    Id = plan!.Id,
+                    Active = plan.Active,
+                    BillingPeriod = plan.BillingPeriod,
+                    Description = plan.Description,
+                    Name = plan.Name,
+                    Price = plan.Price,
+                    TrialPeriod = plan.TrialPeriod
 
-                BillingPeriod = plan!.BillingPeriod,
-
-                TrialPeriod  = plan!.TrialPeriod,
-
-                Features = planFeatureView
+                },
+                Features = planFeatureView,
+                NewFeature = { FeatureId = 2, PlanId = 1 }
             };
+
+
             return View(PlanFeaturesViewModel!);
         }
 
@@ -89,11 +97,11 @@ namespace subscription_system.Areas.Admin.Controllers
         }
 
         // GET: Admin/PlanFeatures/Create
-        public async Task<IActionResult>  Create(int planId)
+        public async Task<IActionResult> Create(int planId)
         {
             Task<Plan> plantask = getPlan(planId);
             ViewData["FeatureId"] = new SelectList(_context.Feature, "Id", "Description");
-            Plan plan =await plantask;
+            Plan plan = await plantask;
             if (plan != null)
                 ViewData["PlanName"] = plan.Name;
 
@@ -105,24 +113,30 @@ namespace subscription_system.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int planId , [Bind("Id,FeatureId")] PlanFeatureViewModel model )
+        public async Task<IActionResult> Create(int planId,/* [Bind("NewFeature.FeatureId")] */PlanFeaturesViewModel model)
         {
-            
-            
-            if (ModelState.IsValid)
-            {
-                PlanFeatureViewModel planFeature = new PlanFeatureViewModel
+            try {
+                PlanFeature planFeature = new PlanFeature
                 {
                     PlanId = planId,
-                    FeatureId = model.FeatureId
+                    FeatureId = model.NewFeature.FeatureId
                 };
-                _context.Add(planFeature);
+                _context.PlanFeature.Add(planFeature);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                Alert(Enums.NotificationType.Success, "registro realizado de forma exitosa", "registro exitoso");
+                return RedirectToAction(nameof(Index), StatusCodes.Status200OK);
+            } catch (DbUpdateException ex) {
+                Alert(Enums.NotificationType.Error, "No se pudo ralizar la acción, por favor intentelo nuevamente", "Error al guardar los datos");
+                _logger.LogInformation("DbUpdateException", ex.ToString());
             }
-           /* ViewData["FeatureId"] = new SelectList(_context.Feature, "Id", "Description", planFeature.FeatureId);
-            ViewData["PlanId"] = new SelectList(_context.Plan, "Id", "Description");*/
-            return View(model);
+            catch (Exception ex) {
+                Alert(Enums.NotificationType.Error, "No se pudo ralizar la acción, por favor intentelo nuevamente", "Error interno");
+                _logger.LogInformation("Exception", ex.ToString());
+            }
+         
+            Alert(Enums.NotificationType.Error,"Profavor verifique los datos suministrados","Datos no validos");
+            return RedirectToAction(nameof(Index), StatusCodes.Status422UnprocessableEntity);
         }
 
         // GET: Admin/PlanFeatures/Edit/5
@@ -210,33 +224,11 @@ namespace subscription_system.Areas.Admin.Controllers
             }
             ViewData["FeatureId"] = new SelectList(_context.Feature, "Id", "Description", planFeature.FeatureId);
             ViewData["PlanId"] = new SelectList(_context.Plan, "Id", "Description", planFeature.PlanId);
-            return View(planFeature);
+            return View(planFeatureViewModel);
         }
 
         // GET: Admin/PlanFeatures/Delete/5
         public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.PlanFeature == null)
-            {
-                return NotFound();
-            }
-
-            var planFeature = await _context.PlanFeature
-                .Include(p => p.Feature)
-                .Include(p => p.Plan)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (planFeature == null)
-            {
-                return NotFound();
-            }
-
-            return View(planFeature);
-        }
-
-        // POST: Admin/PlanFeatures/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.PlanFeature == null)
             {
@@ -247,10 +239,12 @@ namespace subscription_system.Areas.Admin.Controllers
             {
                 _context.PlanFeature.Remove(planFeature);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+
+     
 
         private bool PlanFeatureExists(int id)
         {

@@ -8,7 +8,10 @@
 <h1>Index @ViewData["PlanName"]</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+  
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createModal">
+        Create
+    </button>
 </p>
 <div class="container">
     <div class="row">
@@ -16,60 +19,59 @@
 
         </div>
     </div>
-
-    
-
     <div class="row">
-        <div class="col-6 border">
+        <div class="col-5   border">
             <dl class="row">
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Name)
+                <dt class="col-sm-7">
+                    @Html.DisplayNameFor(model => model.Plan.Name)
                 </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Name)
+                <dd class="col-sm-5">
+                    @Html.DisplayFor(model => model.Plan.Name)
                 </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Description)
+                <dt class="col-sm-7">
+                    @Html.DisplayNameFor(model => model.Plan.Description)
                 </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Description)
+                <dd class="col-sm-5">
+                    @Html.DisplayFor(model => model.Plan.Description)
                 </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Price)
+                <dt class="col-sm-7">
+                    @Html.DisplayNameFor(model => model.Plan.Price)
                 </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Price)
+                <dd class="col-sm-5">
+                    @Html.DisplayFor(model => model.Plan.Price)
                 </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.Active)
+                <dt class="col-sm-7">
+                    @Html.DisplayNameFor(model => model.Plan.Active)
                 </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.Active)
+                <dd class="col-sm-5">
+                    @Html.DisplayFor(model => model.Plan.Active)
                 </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.BillingPeriod)
+                <dt class="col-sm-7">
+                    @Html.DisplayNameFor(model => model.Plan.BillingPeriod)
                 </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.BillingPeriod)
+                <dd class="col-sm-5">
+                    @Html.DisplayFor(model => model.Plan.BillingPeriod)
                 </dd>
-                <dt class="col-sm-2">
-                    @Html.DisplayNameFor(model => model.TrialPeriod)
+                <dt class="col-sm-7">
+                    @Html.DisplayNameFor(model => model.Plan.TrialPeriod)
                 </dt>
-                <dd class="col-sm-10">
-                    @Html.DisplayFor(model => model.TrialPeriod)
+                <dd class="col-sm-5">
+                    @Html.DisplayFor(model => model.Plan.TrialPeriod)
                 </dd>
             </dl>
         </div>
-        <div class="col-6 border">
+        <div class="col-7 border">
             <table class="table">
                 <thead>
                     <tr>
 
                         <th>
-                            @Html.DisplayNameFor(model => model.Features)
+                            <!--   Html.DisplayNameFor(model => model.Features.FirstOrDefault()!.Name)-->
+                            Nombre 
                         </th>
                         <th>
-                            @Html.DisplayNameFor(model => model.Features)
+                            <!--    Html.DisplayNameFor(model => model.Features.FirstOrDefault()!.Description)-->
+                            Descripción
                         </th>
                         <th></th>
                     </tr>
@@ -105,23 +107,28 @@
             </table>
         </div>
     </div>
-   <!-- NOTE:INVERTIGAR COMO INDEPENDIZAR ESTA PARTE DEL CODIGO DE LO DEMAS -->
-    <strong>Marketing:</strong><email mail-to="Marketing"></email>
-    <modal id-modal="myModal" title-modal="putos todos" size="lg">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="form-group">
-                <label asp-for="FeatureId" class="control-label"></label>
-                <select asp-for="FeatureId" class="form-control" asp-items="ViewBag.FeatureId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+    <modal id-modal="createModal" title-modal="putos todos" size="lg">
+        <div class="modal-body-content">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="form-group">
+                    <label asp-for="NewFeature.FeatureId" class="control-label"></label>
+                    <select asp-for="NewFeature.FeatureId" class="form-control" asp-items="ViewBag.FeatureId"></select>
+                </div>
+                <div class="form-group  mt-2">
+                    <input type="submit" value="Create" class="btn btn-primary float-right" />
+                </div>
+            </form>
+        </div>
+      <!--  <div class="modal-footer-content">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div> -->
     </modal>
-
-
+ 
+ 
 </div>
 
 

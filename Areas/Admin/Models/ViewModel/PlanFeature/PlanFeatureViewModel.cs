@@ -10,10 +10,10 @@ namespace subscription_system.Areas.Admin.Models.ViewModel.PlanFeature
     {
         public int Id { get; set; }
 
-        [ForeignKey("Feature"), Required(ErrorMessage = "Debe de seleccionar una característica")]
+        [ForeignKey("Feature"), Required(ErrorMessage = "Debe de seleccionar una característica"),Display(Name ="Funcionalidad")]
         public int FeatureId { get; set; }
 
-        [ForeignKey("Plan"), Required(ErrorMessage = "Debe de existir un plan seleccionado")]
+        [ForeignKey("Plan"), Required(ErrorMessage = "Debe de existir un plan seleccionado"),Display(Name ="Plan")]
         public int PlanId { get; set; }
         public PlanViewModel Plan { get; set; }
 

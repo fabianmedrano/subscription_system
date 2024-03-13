@@ -17,6 +17,10 @@ using subscription_system.TagHelpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//NOTE:LOG
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
 // NOTE: DATABASE  CONFIGURATION Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 

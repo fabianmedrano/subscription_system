@@ -292,3 +292,4 @@ C:\Users\Usuario\source\repos\fabianmedrano\subscription_system\obj\Debug\net7.0
 C:\Users\Usuario\source\repos\fabianmedrano\subscription_system\obj\Debug\net7.0\subscription_system.pdb
 C:\Users\Usuario\source\repos\fabianmedrano\subscription_system\obj\Debug\net7.0\subscription_system.genruntimeconfig.cache
 C:\Users\Usuario\source\repos\fabianmedrano\subscription_system\obj\Debug\net7.0\ref\subscription_system.dll
+C:\Users\Usuario\source\repos\fabianmedrano\subscription_system\bin\Debug\net7.0\HtmlAgilityPack.dll
