@@ -20,7 +20,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-5   border">
+        <div class="col-5   border ">
             <dl class="row">
                 <dt class="col-sm-7">
                     @Html.DisplayNameFor(model => model.Plan.Name)
@@ -61,54 +61,102 @@
             </dl>
         </div>
         <div class="col-7 border">
-            <table class="table">
-                <thead>
-                    <tr>
+            <div class="row">
+                <div class=" col-12">
+                    <form asp-action="Index" method="get">
+                        <div class="form-actions no-color">
+                            <p>
+                                Find by name: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+                                <input type="submit" value="Search" class="btn btn-default" /> |
+                                <a asp-action="Index">Back to Full List</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class=" col-12">
+                    <table class="table">
+                        <thead>
+                            <tr>
 
-                        <th>
-                            <!--   Html.DisplayNameFor(model => model.Features.FirstOrDefault()!.Name)-->
-                            Nombre 
-                        </th>
-                        <th>
-                            <!--    Html.DisplayNameFor(model => model.Features.FirstOrDefault()!.Description)-->
-                            Descripción
-                        </th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-               
-                @foreach (var item in Model.Features)
-                    {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Description)
-                            </td>
-                            <td>
-                                <a class="btn btn-outline-success border-0" asp-action="Edit" asp-route-id="@item.Id">
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M11.013 1.427a1.75 1.75 0 0 1 2.474 0l1.086 1.086a1.75 1.75 0 0 1 0 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 0 1-.927-.928l.929-3.25c.081-.286.235-.547.445-.758l8.61-8.61Zm.176 4.823L9.75 4.81l-6.286 6.287a.253.253 0 0 0-.064.108l-.558 1.953 1.953-.558a.253.253 0 0 0 .108-.064Zm1.238-3.763a.25.25 0 0 0-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 0 0 0-.354Z"></path></svg>
-                                </a>
-                                <a class="btn btn-outline-info border-0 " asp-action="Details" asp-route-id="@item.Id">
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>
-                                </a>
-                                <a class="btn btn-outline-danger border-0 " asp-action="Delete" asp-route-id="@item.Id" onclick="return confirmAlert(event,this);"
-                                   data-mjs="Deseas eliminar la caracteristicadel plan: @item.Name" data-title="Eliminar Caracteristica de plan" data-type="warning">
-                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M11 1.75V3h2.25a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1 0-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75ZM4.496 6.675l.66 6.6a.25.25 0 0 0 .249.225h5.19a.25.25 0 0 0 .249-.225l.66-6.6a.75.75 0 0 1 1.492.149l-.66 6.6A1.748 1.748 0 0 1 10.595 15h-5.19a1.75 1.75 0 0 1-1.741-1.575l-.66-6.6a.75.75 0 1 1 1.492-.15ZM6.5 1.75V3h3V1.75a.25.25 0 0 0-.25-.25h-2.5a.25.25 0 0 0-.25.25Z"></path></svg>
-                                </a>
+                                <th>
+                                    <!--   Html.DisplayNameFor(model => model.Features.FirstOrDefault()!.Name)-->
+                                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Nombre</a>
+                                    
+                                </th>
+                                <th>
+                                    <!--    Html.DisplayNameFor(model => model.Features.FirstOrDefault()!.Description)-->
+                                    
+                                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Descripción</a>
+                                </th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
 
-                            </td>
-                        </tr>
+                            @foreach (var item in Model.Features)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-outline-success border-0" asp-action="Edit" asp-route-id="@item.Id">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M11.013 1.427a1.75 1.75 0 0 1 2.474 0l1.086 1.086a1.75 1.75 0 0 1 0 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 0 1-.927-.928l.929-3.25c.081-.286.235-.547.445-.758l8.61-8.61Zm.176 4.823L9.75 4.81l-6.286 6.287a.253.253 0 0 0-.064.108l-.558 1.953 1.953-.558a.253.253 0 0 0 .108-.064Zm1.238-3.763a.25.25 0 0 0-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 0 0 0-.354Z"></path></svg>
+                                        </a>
+                                        <a class="btn btn-outline-info border-0 " asp-action="Details" asp-route-id="@item.Id">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>
+                                        </a>
+                                        <a class="btn btn-outline-danger border-0 " asp-action="Delete" asp-route-id="@item.Id" onclick="return confirmAlert(event,this);"
+                                           data-mjs="Deseas eliminar la caracteristicadel plan: @item.Name" data-title="Eliminar Caracteristica de plan" data-type="warning">
+                                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M11 1.75V3h2.25a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1 0-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75ZM4.496 6.675l.66 6.6a.25.25 0 0 0 .249.225h5.19a.25.25 0 0 0 .249-.225l.66-6.6a.75.75 0 0 1 1.492.149l-.66 6.6A1.748 1.748 0 0 1 10.595 15h-5.19a1.75 1.75 0 0 1-1.741-1.575l-.66-6.6a.75.75 0 1 1 1.492-.15ZM6.5 1.75V3h3V1.75a.25.25 0 0 0-.25-.25h-2.5a.25.25 0 0 0-.25.25Z"></path></svg>
+                                        </a>
 
+                                    </td>
+                                </tr>
+
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+           
+            
+            
+            
+            <div class="row">
+                <div class=" col-12">
+                    @{
+                        var prevDisabled = !Model.Features.HasPreviousPage ? "disabled" : "";
+                        var nextDisabled = !Model.Features.HasNextPage ? "disabled" : "";
                     }
-                </tbody>
-            </table>
+
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@Model.CurrentSort"
+                       asp-route-pageNumber="@(Model.Features.PageIndex - 1)"
+                       asp-route-currentFilter="@Model.CurrentFilter"
+                       class="btn btn-default prevDisabled">
+                        Previous
+                    </a>
+                    <a asp-action="Index"
+                       asp-route-sortOrder="@Model.CurrentSort"
+                       asp-route-pageNumber="@(Model.Features.PageIndex + 1)"
+                       asp-route-currentFilter="@Model.CurrentFilter"
+                       class="btn btn-default nextDisabled">
+                        Next
+                    </a>
+                </div>
+            </div>
+
+            
         </div>
     </div>
 
-    <modal id-modal="createModal" title-modal="putos todos" size="lg">
+    <modal id-modal="createModal" title-modal="Nueva caracteristica" size="lg">
         <div class="modal-body-content">
             <form asp-action="Create">
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>

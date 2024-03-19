@@ -19,6 +19,8 @@ using subscription_system.Areas.Admin.Models.ViewModel.Feature;
 using System.ComponentModel.DataAnnotations;
 using subscription_system.Areas.Admin.Models.ViewModel.Plan;
 using Microsoft.AspNetCore.Http.HttpResults;
+using subscription_system.Views.Shared.Paginate;
+using subscription_system.Services;
 namespace subscription_system.Areas.Admin.Controllers
 {
 
@@ -29,84 +31,37 @@ namespace subscription_system.Areas.Admin.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly  ILogger<PlanFeaturesController> _logger;
-        public PlanFeaturesController(ApplicationDbContext context, ILogger<PlanFeaturesController> logger)
+
+        private readonly IFeatureService _featureService;
+        public PlanFeaturesController(FeatureService featureService, ILogger<PlanFeaturesController> logger)
         {
-            _context = context;
+            _featureService = featureService;
             _logger = logger;
         }
 
         // GET: Admin/PlanFeatures
-        public async Task<IActionResult> Index(int planId)
+        public async Task<IActionResult> Index(int planId, string sortOrder,  string currentFilter,string searchString,int? pageNumber)
         {
-
-            //NOTE:get plan data
-            Task<Plan> plantask = getPlan(planId);
-            Plan plan = await plantask;
-            if (plan != null)
-                ViewData["PlanName"] = plan.Name;
-
-            //NOTE: get plan feature 
-            var applicationDbContext = _context.Feature
-                .Join(_context.PlanFeature, f => f.Id, pf => pf.FeatureId, (f, pf) => new { pf.Id, f.Description, f.Name, pf.PlanId })
-                .Where(p => p.PlanId == planId).Select((f) => new FeatureViewModel { Id = f.Id, Name = f.Name, Description = f.Description });
-
-            var planFeatureView = await applicationDbContext.ToListAsync();
-
-            //NOTE: esto espara el modal
-            ViewData["FeatureId"] = new SelectList(_context.Feature, "Id", "Description");
-
-            PlanFeaturesViewModel PlanFeaturesViewModel = new PlanFeaturesViewModel
-            {
-                //OPTIMIZE:ESTA PARTE DEL CODIGO DEBE DE MEJORAR
-                Plan = new PlanViewModel {
-                    Id = plan!.Id,
-                    Active = plan.Active,
-                    BillingPeriod = plan.BillingPeriod,
-                    Description = plan.Description,
-                    Name = plan.Name,
-                    Price = plan.Price,
-                    TrialPeriod = plan.TrialPeriod
-
-                },
-                Features = planFeatureView,
-                NewFeature = { FeatureId = 2, PlanId = 1 }
-            };
-
-
-            return View(PlanFeaturesViewModel!);
+            int pageSize = 2;
+            var viewModel = await _featureService.GetFeaturesViewModel(planId, sortOrder, searchString, pageNumber ?? 1, pageSize);
+            return View(viewModel);
         }
 
         // GET: Admin/PlanFeatures/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.PlanFeature == null)
-            {
-                return NotFound();
-            }
-
+            if (id == null || _context.PlanFeature == null)return NotFound();
+            
             var planFeature = await _context.PlanFeature
                 .Include(p => p.Feature)
                 .Include(p => p.Plan)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (planFeature == null)
-            {
-                return NotFound();
-            }
+            if (planFeature == null) return NotFound();
+            
 
             return View(planFeature);
         }
 
-        // GET: Admin/PlanFeatures/Create
-        public async Task<IActionResult> Create(int planId)
-        {
-            Task<Plan> plantask = getPlan(planId);
-            ViewData["FeatureId"] = new SelectList(_context.Feature, "Id", "Description");
-            Plan plan = await plantask;
-            if (plan != null)
-                ViewData["PlanName"] = plan.Name;
-
-            return View();
-        }
 
         // POST: Admin/PlanFeatures/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -150,7 +105,7 @@ namespace subscription_system.Areas.Admin.Controllers
 
             ViewData["FeatureId"] = new SelectList(_context.Feature, "Id", "Description");
             
-            Task<Plan> plantask = getPlan(planId);
+            Task<Plan> plantask = _featureService.getPlan(planId);
             Plan plan = await plantask;
             if (plan != null)
                 ViewData["PlanName"] = plan.Name;
@@ -244,15 +199,10 @@ namespace subscription_system.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-     
-
         private bool PlanFeatureExists(int id)
         {
-          return (_context.PlanFeature?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.PlanFeature?.Any(e => e.Id == id)).GetValueOrDefault();
         }
-        private  Task<Plan> getPlan(int planId) {
-           return _context.Plan.Where(p => p.Id == planId).FirstAsync();
-           
-        }
+      
     }
 }

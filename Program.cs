@@ -7,6 +7,7 @@ using subscription_system.Data;
 using subscription_system.Data.SeedData;
 using subscription_system.Middleware;
 using subscription_system.Models;
+using subscription_system.Services;
 using subscription_system.TagHelpers;
 
 //TODO: inyectar dependencia , para poder utilizar IHTML
@@ -28,9 +29,6 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-
-
-
 //  NOTE:
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddRoles<IdentityRole>()
@@ -38,6 +36,9 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
 
 builder.Services.AddControllersWithViews().AddSessionStateTempDataProvider();
 
+//NOTE: services
+//builder.Services.AddSingleton<IFeatureService,FeatureService>();
+builder.Services.AddScoped<FeatureService>();
 
 
 builder.Services.AddDistributedMemoryCache();
@@ -73,6 +74,9 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.User.RequireUniqueEmail = false;
 
 });
+
+
+
 
 
 var app = builder.Build();
