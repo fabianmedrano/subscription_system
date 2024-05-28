@@ -37,8 +37,15 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
 builder.Services.AddControllersWithViews().AddSessionStateTempDataProvider();
 
 //NOTE: services
-//builder.Services.AddSingleton<IFeatureService,FeatureService>();
+builder.Services.AddScoped<PlanFeatureService>();
+
 builder.Services.AddScoped<FeatureService>();
+
+
+
+
+/**/
+
 
 
 builder.Services.AddDistributedMemoryCache();

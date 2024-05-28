@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using subscription_system.Data;
 using subscription_system.Models;
+using subscription_system.Services;
 
 namespace subscription_system.Areas.Admin.Controllers
 {
@@ -17,35 +18,24 @@ namespace subscription_system.Areas.Admin.Controllers
    
     public class FeaturesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IFeatureService _featureService;
 
-        public FeaturesController(ApplicationDbContext context)
+        public FeaturesController(FeatureService  featureService)
         {
-            _context = context;
+            _featureService = featureService;
         }
 
         // GET: Admin/Features
         public async Task<IActionResult> Index()
         {
-              return _context.Feature != null ? 
-                          View(await _context.Feature.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.Feature'  is null.");
+            List<Feature> features = await _featureService.GetFeatures();
+           return View(features);
         }
 
         // GET: Admin/Features/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int id)
         {
-            if (id == null || _context.Feature == null)
-            {
-                return NotFound();
-            }
-
-            var feature = await _context.Feature
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (feature == null)
-            {
-                return NotFound();
-            }
+            var feature = await _featureService.GetFeature(id);
 
             return View(feature);
         }
@@ -65,26 +55,23 @@ namespace subscription_system.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(feature);
-                await _context.SaveChangesAsync();
+                _featureService.AddFeature(feature);
                 return RedirectToAction(nameof(Index));
             }
             return View(feature);
         }
 
         // GET: Admin/Features/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (id == null || _context.Feature == null)
-            {
+            if (id == null)
                 return NotFound();
-            }
+            
 
-            var feature = await _context.Feature.FindAsync(id);
+            Feature feature = await _featureService.GetFeature(id);
             if (feature == null)
-            {
                 return NotFound();
-            }
+
             return View(feature);
         }
 
@@ -104,12 +91,11 @@ namespace subscription_system.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(feature);
-                    await _context.SaveChangesAsync();
+                    _featureService.Update(feature);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!FeatureExists(feature.Id))
+                    if (!_featureService.FeatureExists(feature.Id))
                     {
                         return NotFound();
                     }
@@ -124,45 +110,22 @@ namespace subscription_system.Areas.Admin.Controllers
         }
 
         // GET: Admin/Features/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int id)
         {
-            if (id == null || _context.Feature == null)
-            {
-                return NotFound();
-            }
-
-            var feature = await _context.Feature
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (feature == null)
-            {
-                return NotFound();
-            }
-
-            return View(feature);
-        }
-
-        // POST: Admin/Features/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Feature == null)
+            if (_featureService.ContextIsNull())
             {
                 return Problem("Entity set 'ApplicationDbContext.Feature'  is null.");
             }
-            var feature = await _context.Feature.FindAsync(id);
+            var feature=  await _featureService.GetFeature(id);
             if (feature != null)
             {
-                _context.Feature.Remove(feature);
+                _featureService.Remove(feature);
             }
-            
-            await _context.SaveChangesAsync();
+
+            await _featureService.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool FeatureExists(int id)
-        {
-          return (_context.Feature?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
+       
     }
 }

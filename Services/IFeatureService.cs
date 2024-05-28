@@ -1,12 +1,20 @@
-﻿using subscription_system.Areas.Admin.Models.ViewModel.Feature;
-using subscription_system.Areas.Admin.Models.ViewModel.PlanFeature;
-using subscription_system.Models;
+﻿using subscription_system.Models;
 
 namespace subscription_system.Services
 {
-    public interface IFeatureService
+    public interface IFeatureService 
     {
-        Task<PlanFeaturesViewModel> GetFeaturesViewModel(int planId, string sortOrder, string searchString, int pageNumber, int pageSize);
-        Task<Plan> getPlan(int planId);
+        Task<List<Feature>> GetFeatures();
+
+        Task<Feature> GetFeature(int id);
+
+        void AddFeature(Feature feature);
+
+        void Update(Feature fetaure);
+        void Delete(int id);
+        void Remove(Feature feature);
+        bool ContextIsNull();
+        Task<int> SaveChangesAsync();
+        bool FeatureExists(int id);
     }
 }

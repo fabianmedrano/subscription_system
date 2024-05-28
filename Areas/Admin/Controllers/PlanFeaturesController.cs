@@ -29,11 +29,11 @@ namespace subscription_system.Areas.Admin.Controllers
     [Route("Admin/Plan/{planId}/PlanFeatures/{action}/{id?}")]
     public class PlanFeaturesController : BaseController
     {
-        private readonly ApplicationDbContext _context;
+      //  private readonly ApplicationDbContext _context;
         private readonly  ILogger<PlanFeaturesController> _logger;
 
-        private readonly IFeatureService _featureService;
-        public PlanFeaturesController(FeatureService featureService, ILogger<PlanFeaturesController> logger)
+        private readonly IPlanFeatureService _featureService;
+        public PlanFeaturesController(PlanFeatureService featureService, ILogger<PlanFeaturesController> logger)
         {
             _featureService = featureService;
             _logger = logger;
@@ -50,13 +50,10 @@ namespace subscription_system.Areas.Admin.Controllers
         // GET: Admin/PlanFeatures/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.PlanFeature == null)return NotFound();
-            
-            var planFeature = await _context.PlanFeature
-                .Include(p => p.Feature)
-                .Include(p => p.Plan)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (planFeature == null) return NotFound();
+            if (_featureService.ExistPlanFeatureContext(id))return NotFound();
+
+            var planFeature = await _featureService.getPlanFeature(id ?? 0);
+         if (planFeature == null) return NotFound();
             
 
             return View(planFeature);
@@ -76,11 +73,11 @@ namespace subscription_system.Areas.Admin.Controllers
                     PlanId = planId,
                     FeatureId = model.NewFeature.FeatureId
                 };
-                _context.PlanFeature.Add(planFeature);
-                await _context.SaveChangesAsync();
 
-                Alert(Enums.NotificationType.Success, "registro realizado de forma exitosa", "registro exitoso");
-                return RedirectToAction(nameof(Index), StatusCodes.Status200OK);
+                var saveit = await _featureService.Add(planFeature);
+
+             
+              
             } catch (DbUpdateException ex) {
                 Alert(Enums.NotificationType.Error, "No se pudo ralizar la acción, por favor intentelo nuevamente", "Error al guardar los datos");
                 _logger.LogInformation("DbUpdateException", ex.ToString());
@@ -89,21 +86,17 @@ namespace subscription_system.Areas.Admin.Controllers
                 Alert(Enums.NotificationType.Error, "No se pudo ralizar la acción, por favor intentelo nuevamente", "Error interno");
                 _logger.LogInformation("Exception", ex.ToString());
             }
-         
-            Alert(Enums.NotificationType.Error,"Profavor verifique los datos suministrados","Datos no validos");
+            Alert(Enums.NotificationType.Success, "registro realizado de forma exitosa", "registro exitoso");
             return RedirectToAction(nameof(Index), StatusCodes.Status422UnprocessableEntity);
         }
 
         // GET: Admin/PlanFeatures/Edit/5
         public async Task<IActionResult> Edit(int planId, int? id)
         {
-            if (id == null || _context.PlanFeature == null)
-            {
-                return NotFound();
-            }
+            if (_featureService.ExistPlanFeatureContext())return NotFound();
+            
 
-
-            ViewData["FeatureId"] = new SelectList(_context.Feature, "Id", "Description");
+            ViewData["FeatureId"] = new SelectList(_featureService.getPlanFeature(id ??0), "Id", "Description");
             
             Task<Plan> plantask = _featureService.getPlan(planId);
             Plan plan = await plantask;
@@ -128,8 +121,8 @@ namespace subscription_system.Areas.Admin.Controllers
             
             if (plan != null)
                 ViewData["PlanName"] = plan.Name;
-                ViewData["FeatureId"] = new SelectList(_context.Feature, "Id", "Description", planFeature.FeatureId);
-            ViewData["PlanId"] = new SelectList(_context.Plan, "Id", "Description", planFeature.PlanId);
+                ViewData["FeatureId"] = new SelectList(_featureService.GetFeatureContext(), "Id", "Description", planFeature.FeatureId);
+            ViewData["PlanId"] = new SelectList(_featureService.GetPlanContext(), "Id", "Description", planFeature.PlanId);
 
           
 
