@@ -64,7 +64,7 @@ namespace subscription_system.Areas.User.Controllers
 
 
         // GET: Admin/Features/Delete/5
-        public async Task<IActionResult> Subscribe(int userId, int planId)
+        public IActionResult Subscribe(int userId, int planId)
         {
             Alert(Enums.NotificationType.Success, "Tu subscripción se a realizado con exito",  "Existo");
 

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using subscription_system.Enums;
+using Microsoft.AspNetCore.Http;
 
+using System.Threading.Tasks;
 namespace subscription_system.Extensions
 {
 
@@ -9,9 +11,14 @@ namespace subscription_system.Extensions
     {
 
         [TempData]
-        public String notification { get; set; } = " putos todos";
-        public void Alert(NotificationType type, string mjs, string title ="") {
+        public String notification { get; set; } = " ";
+        public void Alert(NotificationType type, string mjs, string title = "") {
+
             notification = $" Swal.fire( '{title}','{mjs}','{type}');";
+        }
+
+        public void Alerta(NotificationType type, string message, string title = "") {
+            HttpContext.Response.WriteAsync($"<script>Swal.fire('{title}', '{message}', '{type}');</script>").Wait();
         }
 
         /// </summary>

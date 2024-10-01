@@ -14,9 +14,9 @@ namespace subscription_system.Areas.Admin.Models.ViewModel.PlanFeature
     
         public PlanViewModel Plan { set; get; } = new PlanViewModel();
         public PlanFeatureViewModel NewFeature { set; get; } = new PlanFeatureViewModel();
-        public PaginatedList<FeatureViewModel> Features { get; set; }
-        public string CurrentSort;
-        public string CurrentFilter;
-        public SelectList FeatureIdSelectList;
+        public PaginatedList<FeatureViewModel>? Features { get; set; }
+        public string? CurrentSort;
+        public string? CurrentFilter;
+        public SelectList? FeatureIdSelectList;
     }
 }

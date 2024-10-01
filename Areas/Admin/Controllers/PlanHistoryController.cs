@@ -16,7 +16,7 @@ namespace subscription_system.Areas.Admin.Controllers
     public class PlanHistoryController : Controller
     {
         private readonly ApplicationDbContext _context;
-        public static Plan plan;
+        public static Plan? plan;
 
         public PlanHistoryController(ApplicationDbContext context)
         {
@@ -31,7 +31,7 @@ namespace subscription_system.Areas.Admin.Controllers
             var PlanHistory = await _context.PlanHistory.Where(plan => plan.Id == id).Include(a => a.Plan).ToListAsync();
 
 
-            List<AdminPlanHistoryViewModel> planHistory = new List<AdminPlanHistoryViewModel>();
+            List<AdminPlanHistoryViewModel> planHistory = new();
 
 
             /*
@@ -39,8 +39,8 @@ namespace subscription_system.Areas.Admin.Controllers
             {
                 
             }*/
-            await this.setPlan(id);
-            ViewData["plan"] = plan.Name;
+            await this.SetPlan(id);
+            ViewData["plan"] = plan!.Name;
             /**/
 
             /**/
@@ -70,11 +70,11 @@ namespace subscription_system.Areas.Admin.Controllers
         // GET: Admin/AdminPlanHistoryViewModels/Create
         public IActionResult Create()
         {
-            ViewData["plan"] = plan.Name;
+            ViewData["plan"] = plan!.Name;
             /* var value= new SelectList(_context.Plan, "Id", "Name");
              ViewData["PlanId"] = value;
              */
-            AdminPlanHistoryViewModel adminPlanHistoryViewModel = new AdminPlanHistoryViewModel();
+            AdminPlanHistoryViewModel adminPlanHistoryViewModel = new ();
             return View(adminPlanHistoryViewModel);
         }
 
@@ -87,8 +87,8 @@ namespace subscription_system.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                PlanHistory planHistory = new PlanHistory {
-                    PlanId = plan.Id,
+                PlanHistory planHistory = new () {
+                    PlanId = plan!.Id,
                     OldDescription =plan.Description,
                     NewDescription = adminPlanHistoryViewModel.NewDescription
                 };
@@ -199,7 +199,7 @@ namespace subscription_system.Areas.Admin.Controllers
         {
           return (_context.AdminPlanHistoryViewModel?.Any(e => e.Id == id)).GetValueOrDefault();
         }
-        private async Task  setPlan(int? id) {
+        private async Task  SetPlan(int? id) {
             if (id == null)  NotFound();
             plan = await _context.Plan.FirstOrDefaultAsync(m => m.Id == id); 
         }

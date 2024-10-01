@@ -9,17 +9,17 @@ namespace subscription_system.Models
 
         /**/
         [ForeignKey("User")]
-        public string UserId { get; set; }
-        public User User { get; set; }
+        public string? UserId { get; set; }
+        public User? User { get; set; }
 
 
         [ForeignKey("Plan")]
         public int PlanId { get; set; }
-        public Plan Plan { get; set; }
+        public Plan? Plan { get; set; }
 
         [ForeignKey("SubscriptionDiscount")]
         public int? DiscountId { get; set; } 
-        public SubscriptionDiscount Discount { get; set; }
+        public SubscriptionDiscount? Discount { get; set; }
         /**/
 
         public DateTime StartDate { get; set; }

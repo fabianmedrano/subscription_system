@@ -4,17 +4,17 @@ namespace subscription_system.Services
 {
     public interface IFeatureService 
     {
-        Task<List<Feature>> GetFeatures();
+        Task<List<Feature>> GetFeaturesAsync();
 
-        Task<Feature> GetFeature(int id);
+        Task<Feature> GetFeatureAsync(int id);
 
-        void AddFeature(Feature feature);
+        Task<bool> AddFeatureAsync(Feature feature);
 
-        void Update(Feature fetaure);
-        void Delete(int id);
-        void Remove(Feature feature);
-        bool ContextIsNull();
-        Task<int> SaveChangesAsync();
+        Task<bool> UpdateFeatureAsync(Feature fetaure);
+      //  void DeleteFeature(int id);
+        Task<bool> RemoveFeatureAsync(Feature feature);
+ 
+        Task<bool> SaveChangesAsync();
         bool FeatureExists(int id);
     }
 }

@@ -9,12 +9,16 @@ namespace subscription_system.Services
     public interface IPlanFeatureService
     {
         Task<PlanFeaturesViewModel> GetFeaturesViewModel(int planId, string sortOrder, string searchString, int pageNumber, int pageSize);
-        Task<Plan> getPlan(int planId);
+        Task<Plan> GetPlan(int planId);
         Task<int> Add(PlanFeature plan);
+        Task<PlanFeature> GetPlanFeature(int id);
+        Task<bool> UpdatePlanFeature(PlanFeature planFeature);
+         bool PlanFeatureExists(int id);
+        /*********************************** START GET CONTEXT ***********************************/
         bool ExistPlanFeatureContext(int? id);
         DbSet<PlanFeature> GetPlanFeatureContext();
         DbSet<Plan> GetPlanContext();
-        DbSet<Plan> GetFeatureContext();
-        Task<PlanFeature> getPlanFeature(int id);
+        DbSet<Feature> GetFeatureContext();
+
     }
 }

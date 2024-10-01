@@ -16,9 +16,14 @@ html {
   position: relative;
   min-height: 100%;
 }
+footer {
+    /*margin-bottom:0;
+    position: fixed;*/
+}
 
 body {
   margin-bottom: 60px;
+  
 }
 
 @media(min-width:200px ) {

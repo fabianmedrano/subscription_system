@@ -22,6 +22,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
 
+
 // NOTE: DATABASE  CONFIGURATION Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
@@ -37,12 +38,14 @@ builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfi
 builder.Services.AddControllersWithViews().AddSessionStateTempDataProvider();
 
 //NOTE: services
+builder.Services.AddLogging();
+builder.Services.AddSingleton<ILoggerFactory, LoggerFactory>();
+
+builder.Services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
 builder.Services.AddScoped<PlanFeatureService>();
 
-builder.Services.AddScoped<FeatureService>();
-
-
-
+builder.Services.AddScoped< IFeatureService,FeatureService >();
+builder.Services.AddScoped<ApplicationDbContext>();
 
 /**/
 

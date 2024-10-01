@@ -15,9 +15,9 @@ namespace subscription_system.Areas.Admin.Models.ViewModel.PlanFeature
 
         [ForeignKey("Plan"), Required(ErrorMessage = "Debe de existir un plan seleccionado"),Display(Name ="Plan")]
         public int PlanId { get; set; }
-        public PlanViewModel Plan { get; set; }
+        public PlanViewModel? Plan { get; set; }
 
-        public FeatureViewModel Feature { get; set; }
+        public FeatureViewModel? Feature { get; set; }
 
     }
 

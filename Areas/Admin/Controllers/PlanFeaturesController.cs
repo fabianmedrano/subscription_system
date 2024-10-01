@@ -52,7 +52,7 @@ namespace subscription_system.Areas.Admin.Controllers
         {
             if (_featureService.ExistPlanFeatureContext(id))return NotFound();
 
-            var planFeature = await _featureService.getPlanFeature(id ?? 0);
+            var planFeature = await _featureService.GetPlanFeature(id ?? 0);
          if (planFeature == null) return NotFound();
             
 
@@ -68,7 +68,7 @@ namespace subscription_system.Areas.Admin.Controllers
         public async Task<IActionResult> Create(int planId,/* [Bind("NewFeature.FeatureId")] */PlanFeaturesViewModel model)
         {
             try {
-                PlanFeature planFeature = new PlanFeature
+                PlanFeature planFeature = new ()
                 {
                     PlanId = planId,
                     FeatureId = model.NewFeature.FeatureId
@@ -91,26 +91,25 @@ namespace subscription_system.Areas.Admin.Controllers
         }
 
         // GET: Admin/PlanFeatures/Edit/5
-        public async Task<IActionResult> Edit(int planId, int? id)
+        public async Task<IActionResult> Edit(int planId, int id)
         {
-            if (_featureService.ExistPlanFeatureContext())return NotFound();
+            if (_featureService.ExistPlanFeatureContext(id))return NotFound();
             
-
-            ViewData["FeatureId"] = new SelectList(_featureService.getPlanFeature(id ??0), "Id", "Description");
+            ViewData["FeatureId"] = new SelectList(_featureService.GetFeatureContext(), "Id", "Description");
             
-            Task<Plan> plantask = _featureService.getPlan(planId);
+            Task<Plan> plantask = _featureService.GetPlan(planId);
             Plan plan = await plantask;
             if (plan != null)
                 ViewData["PlanName"] = plan.Name;
 
 
-            var planFeature = await _context.PlanFeature.FindAsync(id);
+            var planFeature = await _featureService.GetPlanFeature(id);
             if (planFeature == null)
             {
                 return NotFound();
             }
 
-            PlanFeatureViewModel planFeatureViewModel = new PlanFeatureViewModel
+            PlanFeatureViewModel planFeatureViewModel = new ()
             {
                 Id = planFeature.Id,
                 FeatureId = planFeature.FeatureId,
@@ -142,7 +141,7 @@ namespace subscription_system.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            PlanFeature planFeature = new PlanFeature
+            PlanFeature planFeature = new ()
             {
                 Id = planFeatureViewModel.Id,
                 PlanId = planFeatureViewModel.PlanId,
@@ -153,13 +152,12 @@ namespace subscription_system.Areas.Admin.Controllers
             {
                 try
                 {
-                
-                    _context.Update(planFeature);
-                    await _context.SaveChangesAsync();
+                  await  _featureService.UpdatePlanFeature(planFeature);
+                  
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PlanFeatureExists(planFeatureViewModel.Id))
+                    if (!_featureService.PlanFeatureExists(planFeatureViewModel.Id))
                     {
                         return NotFound();
                     }
@@ -170,32 +168,23 @@ namespace subscription_system.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["FeatureId"] = new SelectList(_context.Feature, "Id", "Description", planFeature.FeatureId);
-            ViewData["PlanId"] = new SelectList(_context.Plan, "Id", "Description", planFeature.PlanId);
+            ViewData["FeatureId"] = new SelectList(_featureService.GetFeatureContext(), "Id", "Description", planFeature.FeatureId);
+            ViewData["PlanId"] = new SelectList(_featureService.GetPlanContext(), "Id", "Description", planFeature.PlanId);
             return View(planFeatureViewModel);
         }
 
         // GET: Admin/PlanFeatures/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public  IActionResult Delete(int? id)
         {
-            if (_context.PlanFeature == null)
+            if (_featureService.GetPlanFeatureContext() == null)
             {
                 return Problem("Entity set 'ApplicationDbContext.PlanFeature'  is null.");
             }
-            var planFeature = await _context.PlanFeature.FindAsync(id);
-            if (planFeature != null)
-            {
-                _context.PlanFeature.Remove(planFeature);
-            }
-
-            await _context.SaveChangesAsync();
+            
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PlanFeatureExists(int id)
-        {
-            return (_context.PlanFeature?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
+      
       
     }
 }

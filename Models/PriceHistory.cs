@@ -10,7 +10,7 @@ namespace subscription_system.Models
         /**/
         [ForeignKey("Plan")]
         public int PlanId { get; set; }
-        public Plan Plan { get; set; }
+        public Plan? Plan { get; set; }
         /**/
 
         [Required]

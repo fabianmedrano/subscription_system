@@ -8,11 +8,11 @@ namespace subscription_system.Models
 
         [ForeignKey("Plan")]
         public int PlanId { get; set; }
-        public Plan Plan { get; set; }
+        public Plan? Plan { get; set; }
 
         [ForeignKey("Feature")]
         public int FeatureId { get; set; }
-        public Feature Feature { get; set; }
+        public Feature? Feature { get; set; }
 
 
 
