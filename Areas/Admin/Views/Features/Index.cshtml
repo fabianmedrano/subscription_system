@@ -38,8 +38,18 @@
                     <a class="btn btn-outline-info border-0 " asp-action="Details" asp-route-id="@item.Id">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"></path></svg>
                     </a>
-                    <a class="btn btn-outline-danger border-0 " asp-action="Delete" asp-route-id="@item.Id" onclick="return confirmAlert(event,this);"
-                       data-mjs="Deseas eliminar la caracteristicadel plan: @item.Name" data-title="Eliminar Caracteristica " data-type="warning">
+                    <a class="btn btn-outline-danger border-0 " 
+                     
+                    asp-action="Delete" 
+                    asp-route-id="@item.Id" 
+                  
+                       data-mjs="Deseas eliminar la caracteristicadel plan: @item.Name"
+                       data-title="Eliminar Caracteristica "
+                       data-type="warning"
+                       data-method="POST"
+                       data='"Id":"@item.Id"'
+                       onclick="return confirmAlert(event,this);"
+                       >
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" style="display: inline-block; vertical-align: text-bottom;"><path d="M11 1.75V3h2.25a.75.75 0 0 1 0 1.5H2.75a.75.75 0 0 1 0-1.5H5V1.75C5 .784 5.784 0 6.75 0h2.5C10.216 0 11 .784 11 1.75ZM4.496 6.675l.66 6.6a.25.25 0 0 0 .249.225h5.19a.25.25 0 0 0 .249-.225l.66-6.6a.75.75 0 0 1 1.492.149l-.66 6.6A1.748 1.748 0 0 1 10.595 15h-5.19a1.75 1.75 0 0 1-1.741-1.575l-.66-6.6a.75.75 0 1 1 1.492-.15ZM6.5 1.75V3h3V1.75a.25.25 0 0 0-.25-.25h-2.5a.25.25 0 0 0-.25.25Z"></path></svg>
                     </a>
             </td>

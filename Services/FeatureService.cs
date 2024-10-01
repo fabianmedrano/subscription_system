@@ -78,7 +78,7 @@ namespace subscription_system.Services {
                     _context.Feature.Remove(feature);
                     return (await _context.SaveChangesAsync() > 0);
                 } else {
-                    throw new Exception("Existen planes con esta caracteristica asociada");
+                     throw new Exception("Existen planes con esta caracteristica asociada");
                 }
 
             } catch (DbUpdateException dbEx) {

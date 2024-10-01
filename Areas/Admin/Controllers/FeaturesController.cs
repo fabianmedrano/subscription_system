@@ -98,14 +98,19 @@ namespace subscription_system.Areas.Admin.Controllers {
 
         // GET: Admin/Features/Delete/5
         public async Task<IActionResult> Delete(int id) {
+            try {
+                var feature = await _featureService.GetFeatureAsync(id);
+                if (feature != null) {
+                    await _featureService.RemoveFeatureAsync(feature);
+                }
 
-            var feature = await _featureService.GetFeatureAsync(id);
-            if (feature != null) {
-                await _featureService.RemoveFeatureAsync(feature);
+                await _featureService.SaveChangesAsync();
+                return Json(new { success = true, message = "La característica se ha eliminado correctamente" , title = "Caracteristica eliminada", messageType = "success" });
+            } catch (Exception ex) {
+         
+                return Json(new { success = false, message = ex.Message, title="Planes con caracteristica" , messageType = "info" });
             }
-
-            await _featureService.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            
         }
 
 
