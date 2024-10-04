@@ -1,62 +1,176 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
+    position: relative;
+    min-height: 100%;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-footer {
-    /*margin-bottom:0;
-    position: fixed;*/
+    html {
+        font-size: 16px;
+    }
 }
 
 body {
-  margin-bottom: 60px;
-  
+    background-color: #F2F2F2; /* Fondo principal gris claro */
+    color: #4D4D4D; /* Texto principal gris oscuro */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 60px;
 }
 
-@media(min-width:200px ) {
+h1, h2, h3, h4, h5, h6 {
+    color: #800020; /* Títulos en burdeos */
+}
+
+a {
+    color: #2C3E50; /* Enlaces en azul oscuro */
+    text-decoration: none;
+}
+
+    a:hover {
+        color: #B04A5C; /* Enlaces en burdeos claro al hacer hover */
+    }
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+/* --- Header --- */
+header {
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+    header nav {
+        background-color: #800020;
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+
+.navbar a {
+    color: #FFFFFF; /* Links del navbar en blanco */
+}
+
+    .navbar a:hover {
+        color: #F2F2F2; /* Links del navbar en gris claro al hacer hover */
+    }
+
+/* --- Footer --- */
+footer {
+    background-color: #800020;
+    color: #FFFFFF;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%; /* Asegura que el footer abarque todo el ancho */
+    text-align: center;
+}
+
+    /* --- Footer Links --- */
+    footer a {
+        color: #F2F2F2;
+    }
+
+        footer a:hover {
+            color: #FFFFFF;
+        }
+
+/* --- Buttons --- */
+.btn {
+    border-radius: 0 !important;
+}
+
+.btn-primary {
+    background-color: #800020 !important; /* Fondo burdeos */
+    border-color: #800020 !important;
+    color: #FFFFFF;
+}
+
+    .btn-primary:hover {
+        background-color: #660018 !important;
+        border-color: #660018 !important;
+    }
+
+.btn-secondary {
+    background-color: #7F8C8D !important; /* Fondo gris oscuro */
+    border-color: #7F8C8D !important;
+    color: #FFFFFF;
+}
+
+    .btn-secondary:hover {
+        background-color: #566573 !important;
+        border-color: #566573 !important;
+    }
+
+/* --- Cards --- */
+.card {
+    background-color: #FAFAFA; /* Fondo de tarjetas en blanco roto */
+    border: 1px solid #D5D8DC; /* Borde gris medio */
+    width: 20vw;
+}
+
+@media (min-width: 200px) {
     .card {
         width: 80vw;
     }
-    
 }
 
-@media(min-width:400px ) {
+@media (min-width: 400px) {
     .card {
         width: 40vw;
     }
 }
 
-.card {
-    width: 20vw;
+.card-title {
+    color: #800020; /* Título de tarjeta en burdeos */
 }
 
+.card-text {
+    color: #4D4D4D; /* Texto de tarjeta en gris oscuro */
+}
 
 .card-deck {
     display: flex;
     justify-content: space-around;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-    -ms-flex-flow: row wrap;
     flex-flow: row wrap;
     margin-right: -15px;
     margin-left: -15px;
 }
 
+/* --- Borders and Dividers --- */
+hr {
+    border-color: #ABB2B9;
+}
 
+/* --- Tooltip Customization --- */
 .custom-tooltip {
     --bs-tooltip-bg: var(--bd-violet-bg);
     --bs-tooltip-color: var(--bs-white);
+}
+
+/* --- Form elements --- */
+.form-control {
+    border-color: #ABB2B9;
+    color: #4D4D4D;
+}
+
+.form-control:focus {
+    border-color: #800020;
+    box-shadow: 0 0 5px rgba(128, 0, 32, 0.5);
+}
+
+/* --- Iconos y detalles gráficos --- */
+.icon-highlight {
+    color: #D4AC0D;
+}
+
+/* Main content padding */
+main {
+    padding: 20px;
 }

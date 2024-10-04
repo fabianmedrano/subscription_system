@@ -3,12 +3,6 @@
 *@
 @{
 }
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,23 +11,23 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
-   
-    <partial name="~/Views/Shared/Layout/_CssPartial.cshtml" />
+    <partial name="Layout/_CssPartial" />
 </head>
 <body>
     <header>
-        <partial name="_NavPartial" />
+        <partial name="Layout/_NavPartial" />
     </header>
     <main class="container mt-5">
         @RenderBody()
     </main>
+    <partial name="_NotificationPartial" />
 
-    <partial name="~/Views/Shared/_NotificationPartial.cshtml" />
 
-    <partial name="~/Views/Shared/Layout/_FooterPartial.cshtml" />
+    < partial name="Layout/_FooterPartial" /> 
     @await RenderSectionAsync("Scripts", required: false)
-    <partial name="~/Views/Shared/Layout/_JsPartial.cshtml" />
-
+    <partial name="Layout/_JsPartial" />
+    <script src="~/js/site.js"></script>
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 </body>
 </html>
