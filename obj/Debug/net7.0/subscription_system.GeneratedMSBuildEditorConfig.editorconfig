@@ -86,10 +86,6 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUGxhbnNcRGVsZXRlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/Usuario/source/repos/fabianmedrano/subscription_system/Areas/Admin/Views/Plans/Details.cshtml]
-build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUGxhbnNcRGV0YWlscy5jc2h0bWw=
-build_metadata.AdditionalFiles.CssScope = 
-
 [C:/Users/Usuario/source/repos/fabianmedrano/subscription_system/Areas/Admin/Views/Plans/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = QXJlYXNcQWRtaW5cVmlld3NcUGxhbnNcRWRpdC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

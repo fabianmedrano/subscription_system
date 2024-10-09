@@ -15,77 +15,41 @@ using System.Numerics;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using subscription_system.Extensions;
 using subscription_system.Areas.Admin.Models.ViewModel.Plan;
+using subscription_system.Services;
+using subscription_system.Mapper;
 
-namespace subscription_system.Areas.Admin.Controllers
-{
+namespace subscription_system.Areas.Admin.Controllers {
     [Area("Admin")]
-    public class PlansController : BaseController
-    {
-        private readonly ApplicationDbContext _context;
-
-        public PlansController(ApplicationDbContext context)
-        {
-            _context = context;
+    public class PlansController : BaseController {
+        private readonly IPlanService _planService;
+        private readonly ILogger _logger;
+        public PlansController(IPlanService planService, ILogger<PlansController> logger) {
+            _planService = planService;
+            _logger = logger;
         }
 
         // GET: Admin/AdminPlanCreateViewModels
-        public async Task<IActionResult> Index()
-        {
-            if(_context.Plan == null) return Problem("Entity set 'ApplicationDbContext.AdminPlanCreateViewModel'  is null.");
-            
-            var plans = await _context.Plan.ToListAsync();
+        public async Task<IActionResult> Index() {
+            try {
+                List<Plan> plans = await _planService.getPlanListAsync();
 
-            List<PlanViewModel> plansModel = new List<PlanViewModel>();
+                PlanMapper mapper = new PlanMapper();
 
-            foreach (var item in plans)
-            {
+                var plansModel = mapper.mapList(plans);
 
-                PlanViewModel plan = new PlanViewModel
-                {
-                    Id = item.Id,
-                    Name = item.Name,
-                    Description = item.Description,
-                    Price = item.Price,
-                    Active = item.Active,
-                    BillingPeriod = item.BillingPeriod,
-                    TrialPeriod = item.TrialPeriod
-                };
-                plansModel.Add( plan);
+                return View(plansModel);
+            } catch (Exception ex) {
+                _logger.LogError(ex.Message);
+                return StatusCode(500, ex.Message);
             }
-            return View(plansModel);
+
         }
 
-        // GET: Admin/AdminPlanCreateViewModels/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null || _context.Plan == null)
-            {
-                return NotFound();
-            }
 
-            var plan = await _context.Plan
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (plan == null)
-            {
-                return NotFound();
-            }
-            PlanViewModel adminPlanCreateViewModel = new PlanViewModel
-            {
-                Id = plan.Id,
-                Name = plan.Name,
-                Description = plan.Description,
-                Price = plan.Price,
-                Active = plan.Active,
-                BillingPeriod = plan.BillingPeriod,
-                TrialPeriod = plan.TrialPeriod
-            };
 
-            return View(adminPlanCreateViewModel);
-        }
 
         // GET: Admin/AdminPlanCreateViewModels/Create
-        public IActionResult Create()
-        {
+        public IActionResult Create() {
             return View();
         }
 
@@ -94,97 +58,73 @@ namespace subscription_system.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Price,Active,BillingPeriod,TrialPeriod")] PlanViewModel adminPlanCreateViewModel)
-        {
-            if (ModelState.IsValid)
-            {
-                Plan plan = new Plan
-                {
-                    Name = adminPlanCreateViewModel.Name,
-                    Description = adminPlanCreateViewModel.Description,
-                    Price = adminPlanCreateViewModel.Price,
-                    Active = adminPlanCreateViewModel.Active,
-                    BillingPeriod = adminPlanCreateViewModel.BillingPeriod,
-                    TrialPeriod = adminPlanCreateViewModel.TrialPeriod
-                };
-                _context.Add(plan);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index), "PlanFeatures", new { area = "Admin", planId = plan.Id });
+        public async Task<IActionResult> Create(
+            [Bind("Id,Name,Description,Price,Active,BillingPeriod,TrialPeriod")] 
+            PlanViewModel adminPlanCreateViewModel) {
+            try {
+                if (ModelState.IsValid) {
+
+                    PlanMapper mapper = new PlanMapper();
+
+                    Plan plan = mapper.map(adminPlanCreateViewModel);
+
+                    var inserted = await _planService.AddPlanAsync(plan);
+                    return RedirectToAction(nameof(Index), "PlanFeatures", new { area = "Admin", planId = plan.Id });
+                }
+                return View(adminPlanCreateViewModel);
+
+            } catch (Exception ex) {
+                return StatusCode(500, ex.Message);
             }
-            return View(adminPlanCreateViewModel);
+
         }
 
+        //TODO: no he probado estas funciones
         // GET: Admin/AdminPlanCreateViewModels/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null || _context.Plan == null)
-            {
-                return NotFound();
+        public async Task<IActionResult> Edit(int? id) {
+            try {
+                if (id == null) return NotFound();
+
+                Plan plan = await _planService.FindPlanAsync((int)id);
+
+                if (plan == null) return NotFound();
+
+                PlanMapper mapper = new PlanMapper();
+
+                PlanViewModel planVM = mapper.map(plan);
+
+                return View(planVM);
+            } catch (Exception ex) {
+                return StatusCode(500, ex.Message);
             }
 
-            var adminPlanCreateViewModel = await _context.Plan.FindAsync(id);
-            if (adminPlanCreateViewModel == null)
-                return NotFound();
-
-
-
-            PlanViewModel plan = new PlanViewModel{
-                Id = adminPlanCreateViewModel.Id,
-                Name = adminPlanCreateViewModel.Name,
-                Description = adminPlanCreateViewModel.Description,
-                Price = adminPlanCreateViewModel.Price,
-                Active = adminPlanCreateViewModel.Active,
-                BillingPeriod = adminPlanCreateViewModel.BillingPeriod,
-                TrialPeriod = adminPlanCreateViewModel.TrialPeriod
-            };
-            return View(plan);
         }
+
+
+
 
         // POST: Admin/AdminPlanCreateViewModels/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Active,BillingPeriod,TrialPeriod")] PlanViewModel adminPlanCreateViewModel)
-        {
-            if (id != adminPlanCreateViewModel.Id)
-            {
-                return NotFound();
-            }
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Active,BillingPeriod,TrialPeriod")] PlanViewModel adminPlanCreateViewModel) {
+            if (id != adminPlanCreateViewModel.Id) return NotFound();
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    Plan plan = new Plan
-                    {
-                        Id= adminPlanCreateViewModel.Id,
-                        Name = adminPlanCreateViewModel.Name,
-                        Description = adminPlanCreateViewModel.Description,
-                        Price = adminPlanCreateViewModel.Price,
-                        Active = adminPlanCreateViewModel.Active,
-                        BillingPeriod = adminPlanCreateViewModel.BillingPeriod,
-                        TrialPeriod = adminPlanCreateViewModel.TrialPeriod
-                    };
-                    _context.Update(plan);
-                    /* Rastreo de campos distintos*/
-                     List<string> changes=changeTracker(plan);
+            if (ModelState.IsValid) {
+                try {
 
-                    await _context.SaveChangesAsync();
+                    PlanMapper mapper = new PlanMapper();
+                    Plan plan = mapper.map(adminPlanCreateViewModel);
 
+                    var updated = await _planService.UpdatePlanAsync(plan);
+                    // Rastreo de campos distintos
+                    // List<string> changes=changeTracker(plan);
 
-
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!AdminPlanCreateViewModelExists(adminPlanCreateViewModel.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    Alert(Enums.NotificationType.Success, "Plan actualizado con exito");
+                } catch (DbUpdateConcurrencyException ex) {
+                    _logger.LogError(ex, ex.Message);
+                    throw;
                 }
                 return RedirectToAction(nameof(Index));
             }
@@ -192,52 +132,78 @@ namespace subscription_system.Areas.Admin.Controllers
         }
 
         // GET: Admin/AdminPlanCreateViewModels/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-             if (_context.AdminPlanCreateViewModel == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.AdminPlanCreateViewModel'  is null.");
-            }
-              
-            var Plan = await _context.Plan.FindAsync(id);
-            if (Plan == null)
-            {
-                return NotFound();
-            }
+        public async Task<IActionResult> Delete(int? id) {
+            /*   if (_context.AdminPlanCreateViewModel == null)
+               {
+                   return Problem("Entity set 'ApplicationDbContext.AdminPlanCreateViewModel'  is null.");
+               }
+            */
 
-            bool exist = await _context.Subscriptions.AnyAsync(s => s.PlanId == id);
-            if (exist) Alert(Enums.NotificationType.Error, "No es posible eliminar el plan, debido aque existen subscripciones activas con este","Accion no disponible");
-            
-            _context.Plan.Remove(Plan);
-            await _context.SaveChangesAsync();
-            
+            try {
+                if (id == null) return NotFound();
 
-            Alert(Enums.NotificationType.Success,"Plan eliminado correctamente" );
-            return RedirectToAction(nameof(Index));
+                Plan plan = await _planService.FindPlanAsync((int)id);
+
+                if (plan == null) return NotFound();
+
+                bool exist = _planService.CheckSubscriptionsExist((int)id);
+
+                if (exist) Alert(Enums.NotificationType.Error, "No es posible eliminar el plan, debido aque existen subscripciones activas con este", "Accion no disponible");
+
+                await _planService.RemovePlanAsync(plan);
+
+
+                return Json(new { success = true, message = "El plan ha sido eliminado correctamente", title = "Plan eliminado", messagType = "success" });
+            } catch (Exception ex) {
+                return Json(new { success = false, message = ex.Message, title = "Planes  se encuentra en uso por subscriptores", messageType = "info" });
+            }
         }
+
+
+        // GET: Admin/AdminPlanCreateViewModels/Details/5
+        public async Task<IActionResult> Details(int? id) {
+            try {
+                if (id == null) return NotFound();
+
+                PlanMapper mapper = new PlanMapper();
+                Plan plan = await _planService.FindPlanAsync((int)id);
+
+                if (plan == null) return NotFound();
+
+                PlanViewModel adminPlanCreateViewModel = mapper.map(plan);
+                return View(adminPlanCreateViewModel);
+            } catch (Exception ex) {
+                return StatusCode(500, ex.Message);
+            }
+
+        }
+
+
 
         // POST: Admin/AdminPlanCreateViewModels/Delete/5
-      
-        private bool AdminPlanCreateViewModelExists(int id)
-        {
-            return (_context.Plan?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
 
-        private List<string> changeTracker<T>(T model) where T : class
-        {
-            var entry = _context.Entry(model);
+        /*  private bool AdminPlanCreateViewModelExists(int id)
+          {
+              return (_context.Plan?.Any(e => e.Id == id)).GetValueOrDefault();
+          }
+        */
+        /*           private List<string> changeTracker<T>(T model) where T : class
+                   {
+                       var entry = _context.Entry(model);
 
-            var changedProperties = new List<string>();
+                       var changedProperties = new List<string>();
 
-            foreach (var prop in entry.Properties)
-            {
-                if (prop.IsModified)
-                {
-                    changedProperties.Add(prop.Metadata.Name);
-                }
-            }
-            return changedProperties;
-        }
+                       foreach (var prop in entry.Properties)
+                       {
+                           if (prop.IsModified)
+                           {
+                               changedProperties.Add(prop.Metadata.Name);
+                           }
+                       }
+                       return changedProperties;
+                   }
+        */
+
     }
 
 

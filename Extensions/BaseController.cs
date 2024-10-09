@@ -10,6 +10,8 @@ namespace subscription_system.Extensions
     public class BaseController :Controller
     {
 
+        //TODO: i have to clean this code,because  here are some functions that doesn't are using currectly
+
         [TempData]
         public String notification { get; set; } = " ";
         public void Alert(NotificationType type, string mjs, string title = "") {
@@ -17,10 +19,10 @@ namespace subscription_system.Extensions
             notification = $" Swal.fire( '{title}','{mjs}','{type}');";
         }
 
-        public void Alerta(NotificationType type, string message, string title = "") {
+      /*  public void Alerta(NotificationType type, string message, string title = "") {
             HttpContext.Response.WriteAsync($"<script>Swal.fire('{title}', '{message}', '{type}');</script>").Wait();
         }
-
+      */
         /// </summary>
         /// <param name="message">The message to display to the user.</param>
         /// <param name="notifyType">The type of notification to display to the user: Success, Error or Warning.</param>
@@ -54,7 +56,7 @@ namespace subscription_system.Extensions
         //  OPTIMIZE:
         // NOTE: ESTO HAY QUE VER DONDE PONERLO REALMENTE PORQUE NOSE SI ES EL MEJOR LUGAR PARA TENERLO 
         // BUG:
-
+/*
         public static List<TTarget> ConvertObjects<TSource, TTarget>(List<TSource> sourceList, TTarget targetObject)
                 where TSource : class
                 where TTarget : class
@@ -82,7 +84,7 @@ namespace subscription_system.Extensions
         }
 
 
-
+        */
     }
 }
 

@@ -30,7 +30,7 @@ namespace subscription_system.Services {
         public async Task<Feature> GetFeatureAsync(int id) {
             try {
                 // throw new Exception("Error simulado");
-                return await _context.Feature.FindAsync(id) ?? new Feature();
+                return await _context.Feature.FindAsync(id) ?? throw new ArgumentException("Feature not found");
             } catch (SqlException ex) {
                 _logger.LogError(ex, "Database update error: {Message}", ex.Message);
                 throw;

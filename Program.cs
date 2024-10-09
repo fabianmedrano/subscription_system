@@ -45,6 +45,9 @@ builder.Services.AddSingleton(typeof(ILogger<>), typeof(Logger<>));
 builder.Services.AddScoped<PlanFeatureService>();
 
 builder.Services.AddScoped< IFeatureService,FeatureService >();
+builder.Services.AddScoped<IPlanService,PlanService >();
+
+
 builder.Services.AddScoped<ApplicationDbContext>();
 
 /**/
