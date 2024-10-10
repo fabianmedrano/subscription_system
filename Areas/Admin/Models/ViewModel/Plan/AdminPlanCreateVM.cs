@@ -1,9 +1,10 @@
 ﻿using Microsoft.Identity.Client;
+using subscription_system.Areas.Admin.Models.ViewModel.Feature;
 using System.ComponentModel.DataAnnotations;
 
 namespace subscription_system.Areas.Admin.Models.ViewModel.Plan
 {
-    public class PlanViewModel
+    public class AdminPlanCreateVM
     {
 
         public int Id { get; set; }
@@ -52,5 +53,10 @@ namespace subscription_system.Areas.Admin.Models.ViewModel.Plan
             Range(1, 30, ErrorMessage = "El valor debe de estar entre 1 y 30")
         ]
         public int TrialPeriod { set; get; } = 0;
+
+
+        public List<AdminFeatureVM> featuresAvialable { set; get; } = new List<AdminFeatureVM>();
+
+        public List<int> featuresSelected { set; get; } = new List<int>();
     }
 }

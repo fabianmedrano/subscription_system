@@ -22,7 +22,7 @@ namespace subscription_system.Data
             : base(options)
         {
         }
-        public DbSet<PlanViewModel> AdminPlanCreateViewModel { get; set; } = default!;
-        public DbSet<AdminPlanHistoryViewModel> AdminPlanHistoryViewModel { get; set; } = default!;
+        public DbSet<AdminPlanCreateVM> AdminPlanCreateViewModel { get; set; } = default!;
+        public DbSet<AdminPlanHistoryVM> AdminPlanHistoryViewModel { get; set; } = default!;
     }
 }

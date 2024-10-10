@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel;
-using System.Linq;
-using System.Threading.Tasks;
+
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
-using subscription_system.Data;
 using subscription_system.Models;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using System.Numerics;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+
 using subscription_system.Extensions;
 using subscription_system.Areas.Admin.Models.ViewModel.Plan;
 using subscription_system.Services;
@@ -23,9 +14,11 @@ namespace subscription_system.Areas.Admin.Controllers {
     public class PlansController : BaseController {
         private readonly IPlanService _planService;
         private readonly ILogger _logger;
-        public PlansController(IPlanService planService, ILogger<PlansController> logger) {
+        private readonly PlanMapper _planMapper;
+        public PlansController(IPlanService planService, ILogger<PlansController> logger , PlanMapper planMapper) {
             _planService = planService;
             _logger = logger;
+            _planMapper = planMapper;
         }
 
         // GET: Admin/AdminPlanCreateViewModels
@@ -33,9 +26,9 @@ namespace subscription_system.Areas.Admin.Controllers {
             try {
                 List<Plan> plans = await _planService.getPlanListAsync();
 
-                PlanMapper mapper = new PlanMapper();
+              
 
-                var plansModel = mapper.mapList(plans);
+                var plansModel = _planMapper.MapList(plans);
 
                 return View(plansModel);
             } catch (Exception ex) {
@@ -49,7 +42,10 @@ namespace subscription_system.Areas.Admin.Controllers {
 
 
         // GET: Admin/AdminPlanCreateViewModels/Create
-        public IActionResult Create() {
+        public async Task<IActionResult> Create() {
+
+            List<Feature> features = await _planService.getFeaturesListAsync();
+       
             return View();
         }
 
@@ -60,13 +56,12 @@ namespace subscription_system.Areas.Admin.Controllers {
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
             [Bind("Id,Name,Description,Price,Active,BillingPeriod,TrialPeriod")] 
-            PlanViewModel adminPlanCreateViewModel) {
+            AdminPlanCreateVM adminPlanCreateViewModel) {
             try {
                 if (ModelState.IsValid) {
 
-                    PlanMapper mapper = new PlanMapper();
 
-                    Plan plan = mapper.map(adminPlanCreateViewModel);
+                    Plan plan = _planMapper.Map(adminPlanCreateViewModel);
 
                     var inserted = await _planService.AddPlanAsync(plan);
                     return RedirectToAction(nameof(Index), "PlanFeatures", new { area = "Admin", planId = plan.Id });
@@ -89,9 +84,7 @@ namespace subscription_system.Areas.Admin.Controllers {
 
                 if (plan == null) return NotFound();
 
-                PlanMapper mapper = new PlanMapper();
-
-                PlanViewModel planVM = mapper.map(plan);
+                AdminPlanCreateVM planVM = _planMapper.Map(plan);
 
                 return View(planVM);
             } catch (Exception ex) {
@@ -108,14 +101,13 @@ namespace subscription_system.Areas.Admin.Controllers {
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Active,BillingPeriod,TrialPeriod")] PlanViewModel adminPlanCreateViewModel) {
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Price,Active,BillingPeriod,TrialPeriod")] AdminPlanCreateVM adminPlanCreateViewModel) {
             if (id != adminPlanCreateViewModel.Id) return NotFound();
 
             if (ModelState.IsValid) {
                 try {
 
-                    PlanMapper mapper = new PlanMapper();
-                    Plan plan = mapper.map(adminPlanCreateViewModel);
+                    Plan plan = _planMapper.Map(adminPlanCreateViewModel);
 
                     var updated = await _planService.UpdatePlanAsync(plan);
                     // Rastreo de campos distintos
@@ -165,12 +157,11 @@ namespace subscription_system.Areas.Admin.Controllers {
             try {
                 if (id == null) return NotFound();
 
-                PlanMapper mapper = new PlanMapper();
                 Plan plan = await _planService.FindPlanAsync((int)id);
 
                 if (plan == null) return NotFound();
 
-                PlanViewModel adminPlanCreateViewModel = mapper.map(plan);
+                AdminPlanCreateVM adminPlanCreateViewModel = _planMapper.Map(plan);
                 return View(adminPlanCreateViewModel);
             } catch (Exception ex) {
                 return StatusCode(500, ex.Message);

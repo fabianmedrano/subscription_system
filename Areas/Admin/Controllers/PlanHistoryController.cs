@@ -31,7 +31,7 @@ namespace subscription_system.Areas.Admin.Controllers
             var PlanHistory = await _context.PlanHistory.Where(plan => plan.Id == id).Include(a => a.Plan).ToListAsync();
 
 
-            List<AdminPlanHistoryViewModel> planHistory = new();
+            List<AdminPlanHistoryVM> planHistory = new();
 
 
             /*
@@ -74,7 +74,7 @@ namespace subscription_system.Areas.Admin.Controllers
             /* var value= new SelectList(_context.Plan, "Id", "Name");
              ViewData["PlanId"] = value;
              */
-            AdminPlanHistoryViewModel adminPlanHistoryViewModel = new ();
+            AdminPlanHistoryVM adminPlanHistoryViewModel = new ();
             return View(adminPlanHistoryViewModel);
         }
 
@@ -83,7 +83,7 @@ namespace subscription_system.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ChangeDate,OldDescription,NewDescription")] AdminPlanHistoryViewModel adminPlanHistoryViewModel)
+        public async Task<IActionResult> Create([Bind("Id,ChangeDate,OldDescription,NewDescription")] AdminPlanHistoryVM adminPlanHistoryViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -126,7 +126,7 @@ namespace subscription_system.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,PlanId,ChangeDate,OldDescription,NewDescription")] AdminPlanHistoryViewModel adminPlanHistoryViewModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PlanId,ChangeDate,OldDescription,NewDescription")] AdminPlanHistoryVM adminPlanHistoryViewModel)
         {
             if (id != adminPlanHistoryViewModel.Id)
             {

@@ -65,7 +65,7 @@ namespace subscription_system.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int planId,/* [Bind("NewFeature.FeatureId")] */PlanFeaturesViewModel model)
+        public async Task<IActionResult> Create(int planId,/* [Bind("NewFeature.FeatureId")] */AdminPlanFeaturesVM model)
         {
             try {
                 PlanFeature planFeature = new ()
@@ -109,7 +109,7 @@ namespace subscription_system.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            PlanFeatureViewModel planFeatureViewModel = new ()
+            AdminPlanFeatureVM planFeatureViewModel = new ()
             {
                 Id = planFeature.Id,
                 FeatureId = planFeature.FeatureId,
@@ -135,7 +135,7 @@ namespace subscription_system.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,PlanId,FeatureId")] PlanFeatureViewModel planFeatureViewModel)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PlanId,FeatureId")] AdminPlanFeatureVM planFeatureViewModel)
         {
             if (id != planFeatureViewModel.Id)
             {

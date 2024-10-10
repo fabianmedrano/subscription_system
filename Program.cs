@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using subscription_system.Data;
 using subscription_system.Data.SeedData;
+using subscription_system.Mapper;
 using subscription_system.Middleware;
 using subscription_system.Models;
 using subscription_system.Services;
@@ -47,8 +48,13 @@ builder.Services.AddScoped<PlanFeatureService>();
 builder.Services.AddScoped< IFeatureService,FeatureService >();
 builder.Services.AddScoped<IPlanService,PlanService >();
 
+//mapers
+builder.Services.AddSingleton<PlanMapper>();
+builder.Services.AddSingleton<PlanFeatureMapper>();
+builder.Services.AddSingleton<FeatureMapper>();
 
 builder.Services.AddScoped<ApplicationDbContext>();
+
 
 /**/
 

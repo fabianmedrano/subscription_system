@@ -8,7 +8,7 @@ namespace subscription_system.Services
 {
     public interface IPlanFeatureService
     {
-        Task<PlanFeaturesViewModel> GetFeaturesViewModel(int planId, string sortOrder, string searchString, int pageNumber, int pageSize);
+        Task<AdminPlanFeaturesVM> GetFeaturesViewModel(int planId, string sortOrder, string searchString, int pageNumber, int pageSize);
         Task<Plan> GetPlan(int planId);
         Task<int> Add(PlanFeature plan);
         Task<PlanFeature> GetPlanFeature(int id);

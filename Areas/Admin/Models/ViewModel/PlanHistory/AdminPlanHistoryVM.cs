@@ -5,13 +5,13 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace subscription_system.Areas.Admin.Models.ViewModel.PlanHistory
 {
-    public class AdminPlanHistoryViewModel
+    public class AdminPlanHistoryVM
     {
 
         public int Id { get; set; }
         [ForeignKey("Plan")]
         public int PlanId { get; set; }
-        public PlanViewModel? Plan { get; set; }
+        public AdminPlanCreateVM? Plan { get; set; }
         /**/
 
         [Display(Name = "Fecha de modificación"), Editable(false)]

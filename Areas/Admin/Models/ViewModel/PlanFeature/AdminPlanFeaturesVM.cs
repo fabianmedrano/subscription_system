@@ -9,12 +9,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace subscription_system.Areas.Admin.Models.ViewModel.PlanFeature
 {
-    public class PlanFeaturesViewModel
+    public class AdminPlanFeaturesVM
     {
     
-        public PlanViewModel Plan { set; get; } = new PlanViewModel();
-        public PlanFeatureViewModel NewFeature { set; get; } = new PlanFeatureViewModel();
-        public PaginatedList<FeatureViewModel>? Features { get; set; }
+        public AdminPlanCreateVM Plan { set; get; } = new AdminPlanCreateVM();
+        public AdminPlanFeatureVM NewFeature { set; get; } = new AdminPlanFeatureVM();
+        public PaginatedList<AdminFeatureVM>? Features { get; set; }
         public string? CurrentSort;
         public string? CurrentFilter;
         public SelectList? FeatureIdSelectList;

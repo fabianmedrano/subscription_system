@@ -6,6 +6,7 @@ namespace subscription_system.Services {
         // GET FUNCTIONS
         Task<List<Plan>> getPlanListAsync();
         Task<Plan> FindPlanAsync(int id);
+        Task<List<Feature>> getFeaturesListAsync();
 
         //INSERT FUNCTIONS
         Task<bool> AddPlanAsync(Plan plan);

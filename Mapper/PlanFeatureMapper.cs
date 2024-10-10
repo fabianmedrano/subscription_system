@@ -9,11 +9,11 @@
     public partial class PlanFeatureMapper
     {
 
-        public partial FeatureViewModel map(Feature source);
-        public partial PlanFeature map(FeatureViewModel source);
+       
+        public partial PlanFeature Map(AdminFeatureVM source);
 
-        public partial List<PlanFeature> mapList(List<FeatureViewModel> source);
 
-        public partial List<FeatureViewModel> mapList(List<Feature> source);
+
+       
     }
 }

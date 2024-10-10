@@ -6,7 +6,7 @@ using subscription_system.Areas.Admin.Models.ViewModel.Feature;
 
 namespace subscription_system.Areas.Admin.Models.ViewModel.PlanFeature
 {
-    public class PlanFeatureViewModel
+    public class AdminPlanFeatureVM
     {
         public int Id { get; set; }
 
@@ -15,9 +15,9 @@ namespace subscription_system.Areas.Admin.Models.ViewModel.PlanFeature
 
         [ForeignKey("Plan"), Required(ErrorMessage = "Debe de existir un plan seleccionado"),Display(Name ="Plan")]
         public int PlanId { get; set; }
-        public PlanViewModel? Plan { get; set; }
+        public AdminPlanCreateVM? Plan { get; set; }
 
-        public FeatureViewModel? Feature { get; set; }
+        public AdminFeatureVM? Feature { get; set; }
 
     }
 

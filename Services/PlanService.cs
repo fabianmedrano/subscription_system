@@ -41,7 +41,11 @@ namespace subscription_system.Services {
             }
         }
 
+        //GET FEATURES
 
+        public Task<List<Feature>> getFeaturesListAsync() {
+            return _context.Feature.ToListAsync();
+        }
 
         //INSERT FUNCTIONS
         public async Task<bool> AddPlanAsync(Plan plan) {

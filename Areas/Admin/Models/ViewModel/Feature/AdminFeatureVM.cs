@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace subscription_system.Areas.Admin.Models.ViewModel.Feature
 {
-    public class FeatureViewModel
+    public class AdminFeatureVM
     {
         
             public int Id { get; set; }

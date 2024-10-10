@@ -19,13 +19,13 @@ namespace subscription_system.Services
         
         public PlanFeatureService(ApplicationDbContext context) =>    _context = context;
         
-        public async Task<PlanFeaturesViewModel> GetFeaturesViewModel(int planId, string sortOrder, string searchString, int pageNumber, int pageSize)
+        public async Task<AdminPlanFeaturesVM> GetFeaturesViewModel(int planId, string sortOrder, string searchString, int pageNumber, int pageSize)
         {
             PlanMapper planMapper = new ();
 
             // Lógica para obtener los datos del plan
             var plan = await GetPlan(planId);
-            PlanViewModel planVM = planMapper.map(plan);
+            AdminPlanCreateVM planVM = planMapper.map(plan);
 
             // Lógica para obtener las características del plan
             var featuresQuery = GetFeaturesQuery(planId, searchString, sortOrder);
@@ -33,7 +33,7 @@ namespace subscription_system.Services
             // Lógica para la paginación
             var features = await PaginateFeatures(featuresQuery, pageNumber, pageSize);
             var feate = _context.Feature.ToList();
-            return new PlanFeaturesViewModel
+            return new AdminPlanFeaturesVM
             {
                 Plan = planVM,
                 Features = features,
@@ -100,12 +100,12 @@ namespace subscription_system.Services
 
         //////////
         ///
-        private IQueryable<FeatureViewModel> GetFeaturesQuery(int planId, string searchString, string sortOrder)
+        private IQueryable<AdminFeatureVM> GetFeaturesQuery(int planId, string searchString, string sortOrder)
         {
             //NOTE: get plan feature 
             var applicationDbContext = _context.Feature
                 .Join(_context.PlanFeature, f => f.Id, pf => pf.FeatureId, (f, pf) => new { pf.Id, f.Description, f.Name, pf.PlanId })
-                .Where(p => p.PlanId == planId).Select((f) => new FeatureViewModel { Id = f.Id, Name = f.Name, Description = f.Description });
+                .Where(p => p.PlanId == planId).Select((f) => new AdminFeatureVM { Id = f.Id, Name = f.Name, Description = f.Description });
 
             // FIX:Aun mas codigo para revisar!!
             if (!String.IsNullOrEmpty(searchString))
@@ -124,9 +124,9 @@ namespace subscription_system.Services
             return applicationDbContext;
         }
 
-        private async Task<PaginatedList<FeatureViewModel>> PaginateFeatures(IQueryable<FeatureViewModel> featuresQuery, int pageSize, int pageNumber )
+        private async Task<PaginatedList<AdminFeatureVM>> PaginateFeatures(IQueryable<AdminFeatureVM> featuresQuery, int pageSize, int pageNumber )
         {
-            return  await PaginatedList<FeatureViewModel>.CreateAsync(featuresQuery.AsNoTracking(), pageNumber, pageSize);
+            return  await PaginatedList<AdminFeatureVM>.CreateAsync(featuresQuery.AsNoTracking(), pageNumber, pageSize);
         }
 
       

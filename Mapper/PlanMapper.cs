@@ -7,13 +7,13 @@ namespace subscription_system.Mapper
     [Mapper]
     public partial class PlanMapper
     {
-        public partial PlanViewModel map(Plan source);
+        public partial AdminPlanCreateVM Map(Plan source);
 
-        public partial Plan map(PlanViewModel source);
+        public partial Plan Map(AdminPlanCreateVM source);
 
-        public partial List<PlanViewModel> mapList(List<Plan> source);
+        public partial List<AdminPlanCreateVM> MapList(List<Plan> source);
 
-        public partial List<Plan> mapList(List<PlanViewModel> source);
+        public partial List<Plan> MapList(List<AdminPlanCreateVM> source);
 
 
     }
