@@ -1,19 +1,19 @@
 ﻿using Microsoft.Identity.Client;
 using subscription_system.Areas.Admin.Models.ViewModel.Feature;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace subscription_system.Areas.Admin.Models.ViewModel.Plan
 {
-    public class AdminPlanCreateVM
-    {
+    public class AdminPlanCreateVM {
 
         public int Id { get; set; }
 
         [
            Display(Name = "Nombre"),
            Required(ErrorMessage = "Debes de ingresar un nombre "),
-           MaxLength(150),
-           MinLength(5)
+           MaxLength(150,ErrorMessage ="La cantidad maxima permitida de caracteres {0}"),
+           MinLength(5, ErrorMessage ="Debes de introducir almenos {0} caracteres")
        ]
         public string Name { set; get; } = "";
 
@@ -36,7 +36,8 @@ namespace subscription_system.Areas.Admin.Models.ViewModel.Plan
 
         [
             Display(Name = "Plan activo"),
-            Required
+            Required(ErrorMessage ="El precio es requerido"),
+            Range(0.01, double.MaxValue, ErrorMessage ="El precio debe de ser mayor a 0")
         ]
         public bool Active { set; get; } = true;
 
@@ -55,8 +56,9 @@ namespace subscription_system.Areas.Admin.Models.ViewModel.Plan
         public int TrialPeriod { set; get; } = 0;
 
 
-        public List<AdminFeatureVM> featuresAvialable { set; get; } = new List<AdminFeatureVM>();
+        public List<AdminFeatureVM> FeaturesAvialable { set; get; } = new List<AdminFeatureVM>();
 
-        public List<int> featuresSelected { set; get; } = new List<int>();
+        [NotMapped]
+        public List<int> FeaturesSelected { get; set; } = new List<int>();
     }
 }

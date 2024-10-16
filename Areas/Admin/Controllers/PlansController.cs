@@ -8,45 +8,78 @@ using subscription_system.Extensions;
 using subscription_system.Areas.Admin.Models.ViewModel.Plan;
 using subscription_system.Services;
 using subscription_system.Mapper;
+using subscription_system.Areas.Admin.Models.ViewModel.Feature;
 
 namespace subscription_system.Areas.Admin.Controllers {
     [Area("Admin")]
     public class PlansController : BaseController {
         private readonly IPlanService _planService;
+        private readonly IFeatureService _featureService;
         private readonly ILogger _logger;
         private readonly PlanMapper _planMapper;
-        public PlansController(IPlanService planService, ILogger<PlansController> logger , PlanMapper planMapper) {
-            _planService = planService;
-            _logger = logger;
-            _planMapper = planMapper;
+        private readonly FeatureMapper _featureMapper; 
+
+        public PlansController(
+            IPlanService planService,
+            IFeatureService featureService,
+            ILogger<PlansController> logger,
+            PlanMapper planMapper,
+            FeatureMapper featureMapper
+          
+            ) {
+                _planService = planService;
+                _featureService = featureService;
+                _logger = logger;
+                _planMapper = planMapper;
+                _featureMapper = featureMapper;
         }
 
         // GET: Admin/AdminPlanCreateViewModels
         public async Task<IActionResult> Index() {
             try {
-                List<Plan> plans = await _planService.getPlanListAsync();
+                List<Plan> plans = await _planService.GetPlanListAsync();
 
-              
+
 
                 var plansModel = _planMapper.MapList(plans);
 
                 return View(plansModel);
             } catch (Exception ex) {
-                _logger.LogError(ex.Message);
+                _logger.LogError(ex, "{message}", ex.Message);
                 return StatusCode(500, ex.Message);
             }
 
         }
 
 
-
+        //NOTE:
+        //TODO:
+        //OPTIMIZE: 
+        //BUG:
+        //DISCUSS:
+        //FIXME:
+        //STEP:
+        //IMPORTANT:
 
         // GET: Admin/AdminPlanCreateViewModels/Create
         public async Task<IActionResult> Create() {
 
-            List<Feature> features = await _planService.getFeaturesListAsync();
-       
-            return View();
+            List<Feature> features = await _planService.GetFeaturesListAsync();
+
+            List<AdminFeatureVM> featureVMs = _featureMapper.MapList(features);
+
+            AdminPlanCreateVM plancreate = new AdminPlanCreateVM {
+                Id = 0,
+                Active = true,
+                BillingPeriod = 0,
+                Description = "Description",
+                FeaturesAvialable = featureVMs,
+                Name = "",
+                Price = 0,
+                TrialPeriod = 0,
+                FeaturesSelected = new List<int>()
+            };
+            return View(plancreate);
         }
 
         // POST: Admin/AdminPlanCreateViewModels/Create
@@ -55,7 +88,7 @@ namespace subscription_system.Areas.Admin.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(
-            [Bind("Id,Name,Description,Price,Active,BillingPeriod,TrialPeriod")] 
+            [Bind("Id,Name,Description,Price,Active,BillingPeriod,TrialPeriod,FeaturesAvialable","FeaturesSelected")]
             AdminPlanCreateVM adminPlanCreateViewModel) {
             try {
                 if (ModelState.IsValid) {
@@ -115,7 +148,7 @@ namespace subscription_system.Areas.Admin.Controllers {
 
                     Alert(Enums.NotificationType.Success, "Plan actualizado con exito");
                 } catch (DbUpdateConcurrencyException ex) {
-                    _logger.LogError(ex, ex.Message);
+                    _logger.LogError(ex, "{message}", ex.Message);
                     throw;
                 }
                 return RedirectToAction(nameof(Index));

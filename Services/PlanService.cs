@@ -16,14 +16,14 @@ namespace subscription_system.Services {
 
 
         // GET FUCNTIONS
-        public async Task<List<Plan>> getPlanListAsync() {
+        public async Task<List<Plan>> GetPlanListAsync() {
             try {
                 return await _context.Plan.ToListAsync();
             } catch(SqlException ex) {
-                _logger.LogError(ex, ex.Message);
+                _logger.LogError(ex, "{message}",ex.Message);
                 throw;
             } catch (Exception ex) {
-                _logger.LogError(ex, ex.Message);
+                 _logger.LogError(ex,"{message}" ,ex.Message);
                 throw;
             }
          
@@ -33,17 +33,17 @@ namespace subscription_system.Services {
             try {
                 return await _context.Plan.FindAsync( id) ?? throw new ArgumentException("Plan not found"); 
             } catch (SqlException ex) {
-                _logger.LogError(ex, ex.Message);
+                 _logger.LogError(ex,"{message}" ,ex.Message);
                 throw;
             } catch (Exception ex) {
-                _logger.LogError(ex, ex.Message);
+                 _logger.LogError(ex,"{message}" ,ex.Message);
                 throw;
             }
         }
 
         //GET FEATURES
 
-        public Task<List<Feature>> getFeaturesListAsync() {
+        public Task<List<Feature>> GetFeaturesListAsync() {
             return _context.Feature.ToListAsync();
         }
 
@@ -54,10 +54,10 @@ namespace subscription_system.Services {
                 _context.Add(plan);
                 return (await _context.SaveChangesAsync() > 0);
             } catch (DbUpdateException ex) {
-                _logger.LogError(ex, ex.Message);
+                 _logger.LogError(ex,"{message}" ,ex.Message);
                 throw;
             } catch (Exception ex) {
-                _logger.LogError(ex,ex.Message);
+                _logger.LogError(ex,"{message}" ,ex.Message);
                 throw;
             }
         }
@@ -67,10 +67,10 @@ namespace subscription_system.Services {
                 _context.Update(plan);
                 return (await _context.SaveChangesAsync() > 0);
             } catch (DbUpdateException ex) {
-                _logger.LogError(ex, ex.Message);
+                 _logger.LogError(ex,"{message}" ,ex.Message);
                  throw;
             } catch (Exception ex) {
-                _logger.LogError(ex, ex.Message);
+                 _logger.LogError(ex,"{message}" ,ex.Message);
                 throw;
             }
         }
@@ -81,7 +81,7 @@ namespace subscription_system.Services {
             try {
                 return _context.Subscriptions.Any(p => p.Id == planId);
             } catch (SqlException ex) {
-                _logger.LogError(ex,ex.Message);
+                _logger.LogError(ex,"{message}" ,ex.Message);
                 throw;
             }
         }
@@ -94,10 +94,10 @@ namespace subscription_system.Services {
                 _context.Plan.Remove(plan);
                 return (await _context.SaveChangesAsync() > 0);
             } catch (DbUpdateException ex) {
-                _logger.LogError(ex,ex.Message);
+                _logger.LogError(ex,"{message}" ,ex.Message);
                 throw;
             } catch (Exception ex) {
-                _logger.LogError(ex, ex.Message);
+                 _logger.LogError(ex,"{message}" ,ex.Message);
                 throw;
             }
         }

@@ -13,19 +13,24 @@ using System.Linq;
 
 namespace subscription_system.Services
 {
-    public class PlanFeatureService : IPlanFeatureService
-    {
+    public class PlanFeatureService : IPlanFeatureService {
         private readonly ApplicationDbContext _context;
-        
-        public PlanFeatureService(ApplicationDbContext context) =>    _context = context;
-        
+        private readonly PlanMapper _planMapper;
+        public PlanFeatureService(
+            ApplicationDbContext context,
+            PlanMapper planMapper            
+            ) {
+            _context = context;
+           _planMapper = planMapper;
+        }
+
         public async Task<AdminPlanFeaturesVM> GetFeaturesViewModel(int planId, string sortOrder, string searchString, int pageNumber, int pageSize)
         {
-            PlanMapper planMapper = new ();
+         
 
             // Lógica para obtener los datos del plan
-            var plan = await GetPlan(planId);
-            AdminPlanCreateVM planVM = planMapper.map(plan);
+            Plan plan = await GetPlan(planId);
+            AdminPlanCreateVM planVM = _planMapper.Map(plan);
 
             // Lógica para obtener las características del plan
             var featuresQuery = GetFeaturesQuery(planId, searchString, sortOrder);

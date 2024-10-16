@@ -4,9 +4,9 @@ namespace subscription_system.Services {
     public interface IPlanService {
 
         // GET FUNCTIONS
-        Task<List<Plan>> getPlanListAsync();
+        Task<List<Plan>> GetPlanListAsync();
         Task<Plan> FindPlanAsync(int id);
-        Task<List<Feature>> getFeaturesListAsync();
+        Task<List<Feature>> GetFeaturesListAsync();
 
         //INSERT FUNCTIONS
         Task<bool> AddPlanAsync(Plan plan);

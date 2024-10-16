@@ -6,10 +6,11 @@
 
 
 <div class="row justify-content-center">
+    <form asp-action="Create">
     <div class="col-md-6">
         <div class="container border rounded  p-4">
             <h2>Nuevo plan de subscripción</h2>
-            <form asp-action="Create">
+            
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row">
                     <div class="col-10">
@@ -70,13 +71,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="row mt-2">
-                    <div class="form-group">
-                        <input type="submit" value="Create" class="btn btn-primary" />
-                    </div>
-                </div>
+               
 
-            </form>
+            
         </div>
       
     </div>
@@ -86,32 +83,41 @@
             <div class="row">
                 <div class="col-md-6">
                     <h2>Caracteristicas disponibles</h2>
-                    <ul>
-                        @foreach (var feature in ViewBag.AvailableFeatures) {
-                            <li>
-                                <input type="checkbox" value="@feature.Id"/>
+                        <select multiple="multiple" asp-for="FeaturesSelected"  class="form-control">
+                        @foreach (var feature in Model.FeaturesAvialable) {
+                            <option value="@feature.Id">
                                 @feature.Name
-                            </li>
+                            </option>
                         }
-
-                    </ul>  
+                    </select>
+                    
                 </div>
-                <div class="col-md-6">
+              <!--  <div class="col-md-6">
                     <h2>CAracteristicas seleccionadas</h2>
-                    <ul>
-                        @foreach(var feature in Model.FeatureIds){
-                        <li>
-                            <input type="checkbox" value="@feature.Id"/>
-                            @feature.
-                        </li>
+                    <select multiple="multiple" asp-for="FeaturesSelected" class="form-control">
+                        @foreach (var caracteristica in Model.FeaturesAvialable) {
+                            <option value="@caracteristica.Id">
+                                @caracteristica.Name
+                            </option>
                         }
-                    </ul>
+                    </select>
                 </div>
+                      -->
             </div>
 
         </div>
        
     </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+    
+    </form>
 </div>
 
 <div>
