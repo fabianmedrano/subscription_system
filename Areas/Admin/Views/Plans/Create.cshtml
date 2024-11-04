@@ -7,109 +7,102 @@
 
 <div class="row justify-content-center">
     <form asp-action="Create">
-    <div class="col-md-6">
-        <div class="container border rounded  p-4">
-            <h2>Nuevo plan de subscripción</h2>
-            
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <div class="row">
-                    <div class="col-10">
-                        <div class="form-group">
-                            <label asp-for="Name" class="control-label"></label>
-                            <input asp-for="Name" class="form-control" />
-                            <span asp-validation-for="Name" class="text-danger"></span>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="container border rounded  p-4">
+                    <h2>Nuevo plan de subscripción</h2>
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-10">
+                            <div class="form-group">
+                                <label asp-for="Name" class="control-label"></label>
+                                <input asp-for="Name" asp-mask="months" class="form-control" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-2">
-                        <div class="form-group">
-                            <label class="form-check-label" asp-for="Active">@Html.DisplayNameFor(model => model.Active)</label>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" asp-for="Active">
+                        <div class="col-2">
+                            <div class="form-group">
+                                <label class="form-check-label" asp-for="Active">@Html.DisplayNameFor(model => model.Active)</label>
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" role="switch" asp-for="Active">
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-               
-            
-              
-                <div class="form-group">
-                    <label asp-for="Description" class="control-label"></label>
-                    <textarea asp-for="Description" class="form-control"></textarea>
-                    <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Price" class="control-label"></label>
-                    <div class="input-group mb-3">
-                        <span class="input-group-text">$</span>
-                        <input asp-for="Price" type="number" class="form-control" aria-label="Amount (to the nearest dollar)">
-                        <span class="input-group-text">.00</span>
-                    </div>
-                    <span asp-validation-for="Price" class="text-danger"></span>
-                </div>
-           
-                <div class="row">
-                    <div class="col-6">
 
+                    <div class="row">
                         <div class="form-group">
-                            <label asp-for="BillingPeriod" class="control-label"></label>
-                            <div class="input-group ">
-                                <input asp-for="BillingPeriod" type="number" class="form-control" min="0">
-                                <span asp-validation-for="BillingPeriod" class="input-group-text"  type="number" min="1">meses</span>
-                            </div>
-                            <span asp-validation-for="BillingPeriod" class="text-danger"></span>
+                            <label asp-for="Description" class="control-label"></label>
+                            <textarea asp-for="Description" class="form-control"></textarea>
+                            <span asp-validation-for="Description" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Price" class="control-label"></label>
+                            <input asp-for="Price" asp-mask="currency" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
                         </div>
                     </div>
-                       
-                    <div class="col-6">
-                        <div class="form-group">
-                            <label asp-for="TrialPeriod" class="control-label"></label>
-                            <div class="input-group ">
-                                <input asp-for="TrialPeriod" type="number" class="form-control" min="0">
-                                <span asp-validation-for="TrialPeriod" class="input-group-text"  type="number">días</span>
-                            </div>
-                            <span asp-validation-for="TrialPeriod" class="text-danger"></span>
-                        </div>
-                    </div>
-                </div>
-               
-
-            
-        </div>
-      
-    </div>
-
-    <div class="col-md-6">
-        <div class="container border rounded  p-4">
-            <div class="row">
-                <div class="col-md-6">
-                    <h2>Caracteristicas disponibles</h2>
-                        <select multiple="multiple" asp-for="FeaturesSelected"  class="form-control">
-                        @foreach (var feature in Model.FeaturesAvialable) {
-                            <option value="@feature.Id">
-                                @feature.Name
-                            </option>
-                        }
-                    </select>
                     
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label asp-for="BillingPeriod" class="control-label"></label>
+                                <input asp-for="BillingPeriod"   asp-mask="months" class="form-control" />
+                                <span asp-validation-for="BillingPeriod" class="text-danger"></span>
+                               
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label asp-for="TrialPeriod" class="control-label"></label>
+                                <input asp-for="TrialPeriod" type="number" asp-mask="months" class="form-control" />
+                                <span asp-validation-for="TrialPeriod" class="text-danger"></span>
+
+                            </div>
+                          
+                        </div>
+                    </div>
+
+
                 </div>
-              <!--  <div class="col-md-6">
-                    <h2>CAracteristicas seleccionadas</h2>
-                    <select multiple="multiple" asp-for="FeaturesSelected" class="form-control">
-                        @foreach (var caracteristica in Model.FeaturesAvialable) {
-                            <option value="@caracteristica.Id">
-                                @caracteristica.Name
-                            </option>
-                        }
-                    </select>
+
+            </div>
+
+            <div class="col-md-6">
+                <div class="container border rounded  p-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2>Caracteristicas disponibles</h2>
+                            <select multiple="multiple" asp-for="FeaturesSelected" class="form-control">
+                                @foreach (var feature in Model.FeaturesAvialable) {
+                                    <option value="@feature.Id">
+                                        @feature.Name
+                                    </option>
+                                }
+                            </select>
+
+                        </div>
+                        <!--  <div class="col-md-6">
+                              <h2>CAracteristicas seleccionadas</h2>
+                              <select multiple="multiple" asp-for="FeaturesSelected" class="form-control">
+                                  foreach (var caracteristica in Model.FeaturesAvialable) {
+                                      <option value="caracteristica.Id">
+                                          caracteristica.Name
+                                      </option>
+                                  }
+                              </select>
+                          </div>
+                                -->
+                    </div>
+
                 </div>
-                      -->
+
             </div>
 
         </div>
-       
-    </div>
-
-    <div class="row">
+    
+        <div class="row">
         <div class="col-md-12">
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
@@ -127,14 +120,12 @@
 @section Scripts {
 
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
     <script>
-        $(document).ready(function () {
-            $('add-feature').click(function () { 
-                var selectedFeature = $()
-            });
-        });
+     
+
     </script>
+
+    
 
 
 }

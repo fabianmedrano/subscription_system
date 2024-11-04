@@ -19,7 +19,8 @@
      
     </div>
     <partial name="Layout/_FooterPartial" />
-    @await RenderSectionAsync("Scripts", required: false)
+
     <partial name="Layout/_JsPartial" />
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

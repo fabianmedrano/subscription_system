@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "PXekvYZ0H4Ip2VhMpv+QGS94tZasdnjNi+AMAmEwWsA=",
+  "Hash": "2zK/YSEgUUMsLv651uGS9XEp6uTyUu/PQnANbqbByGg=",
   "Source": "subscription_system",
   "BasePath": "_content/subscription_system",
   "Mode": "Default",
@@ -1250,6 +1250,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\js\\alerts.js"
+    },
+    {
+      "Identity": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\js\\mask.js",
+      "SourceId": "subscription_system",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\",
+      "BasePath": "_content/subscription_system",
+      "RelativePath": "js/mask.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\mask.js"
     },
     {
       "Identity": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\js\\site.js",

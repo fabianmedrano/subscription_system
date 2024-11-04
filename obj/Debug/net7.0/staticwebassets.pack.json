@@ -17,6 +17,10 @@
       "PackagePath": "staticwebassets\\js\\alerts.js"
     },
     {
+      "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\js\\mask.js",
+      "PackagePath": "staticwebassets\\js\\mask.js"
+    },
+    {
       "Id": "C:\\Users\\Usuario\\source\\repos\\fabianmedrano\\subscription_system\\wwwroot\\js\\site.js",
       "PackagePath": "staticwebassets\\js\\site.js"
     },
