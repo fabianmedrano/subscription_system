@@ -316,3 +316,7 @@ C:\Users\Usuario\source\repos\fabianmedrano\subscription_system\bin\Debug\net7.0
 C:\Users\Usuario\source\repos\fabianmedrano\subscription_system\bin\Debug\net7.0\System.Text.Encodings.Web.dll
 C:\Users\Usuario\source\repos\fabianmedrano\subscription_system\bin\Debug\net7.0\System.Text.Json.dll
 C:\Users\Usuario\source\repos\fabianmedrano\subscription_system\bin\Debug\net7.0\runtimes\browser\lib\net7.0\System.Text.Encodings.Web.dll
+C:\Users\Usuario\source\repos\fabianmedrano\subscription_system\bin\Debug\net7.0\subscription_system.staticwebassets.endpoints.json
+C:\Users\Usuario\source\repos\fabianmedrano\subscription_system\obj\Debug\net7.0\staticwebassets.build.endpoints.json
+C:\Users\Usuario\source\repos\fabianmedrano\subscription_system\obj\Debug\net7.0\staticwebassets\msbuild.subscription_system.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
+C:\Users\Usuario\source\repos\fabianmedrano\subscription_system\obj\Debug\net7.0\staticwebassets.upToDateCheck.txt
