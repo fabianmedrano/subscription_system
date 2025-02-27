@@ -32,8 +32,10 @@
 
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Identity\Pages\Shared\" />
     <Folder Include="Areas\User\Data\" />
     <Folder Include="Areas\User\Models\" />
+    <Folder Include="Filters\" />
     <Folder Include="wwwroot\NewFolder\" />
   </ItemGroup>
 

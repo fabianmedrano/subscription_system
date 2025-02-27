@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<aside id="sidebar" class="sidebar">
+
+    <ul class="sidebar-nav" id="sidebar-nav">
+
+        <li class="nav-item">
+            <a class="nav-link " asp-area="" asp-controller="Home" asp-action="Index">
+                <i class="bi bi-grid"></i>
+                <span>Dashboard</span>
+            </a>
+        </li><!-- End Dashboard Nav -->
+
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-layout-text-window-reverse"></i><span>Tables</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="tables-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="tables-general.html">
+                        <i class="bi bi-circle"></i><span>General Tables</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="tables-data.html">
+                        <i class="bi bi-circle"></i><span>Data Tables</span>
+                    </a>
+                </li>
+            </ul>
+        </li><!-- End Tables Nav -->
+
+
+        <li class="nav-heading">Pages</li>
+
+
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" asp-area="Admin" asp-controller="Plans" asp-action="Index">
+                <i class="bi bi-file-check"></i>
+                <span>Plan</span>
+            </a>
+        </li><!-- End Login Page Nav -->
+
+        <li class="nav-item">
+            <a class="nav-link collapsed" asp-area="Admin" asp-controller="Features" asp-action="Index">
+                <i class="bi bi-list-check"></i>
+                <span>Feature</span>
+            </a>
+        </li><!-- End Error 404 Page Nav -->
+
+
+    </ul>
+
+</aside><!-- End Sidebar-->
