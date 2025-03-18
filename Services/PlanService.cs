@@ -48,16 +48,34 @@ namespace subscription_system.Services {
         }
 
         //INSERT FUNCTIONS
-        public async Task<bool> AddPlanAsync(Plan plan) {
-
+        public async Task<bool> AddPlanAsync(Plan plan, List<int> featuresSelected) {
+           
+            await using var transaction = await _context.Database.BeginTransactionAsync();
             try {
-                _context.Add(plan);
-                return (await _context.SaveChangesAsync() > 0);
+                await _context.Plan.AddAsync(plan);
+                var result = await _context.SaveChangesAsync();
+                if (result > 0) {
+
+                    var planFeatures = featuresSelected.Select(featureId => new PlanFeature {
+                        PlanId = plan.Id, 
+                        FeatureId = featureId
+                    });
+
+                    await _context.PlanFeature.AddRangeAsync(planFeatures);// perece que solo inserto una de lascaracteristicas
+                    var featuresResult = await _context.SaveChangesAsync();
+                    await transaction.CommitAsync();
+
+                    return featuresResult > 0;
+                }
+                await transaction.RollbackAsync();
+                return false;
             } catch (DbUpdateException ex) {
-                 _logger.LogError(ex,"{message}" ,ex.Message);
+                _logger.LogError(ex, "{message}", ex.Message);
+                await transaction.RollbackAsync(); 
                 throw;
             } catch (Exception ex) {
-                _logger.LogError(ex,"{message}" ,ex.Message);
+                _logger.LogError(ex, "{message}", ex.Message);
+                await transaction.RollbackAsync(); 
                 throw;
             }
         }

@@ -10,12 +10,15 @@ namespace subscription_system.Services
     {
         Task<AdminPlanFeaturesVM> GetFeaturesViewModel(int planId, string sortOrder, string searchString, int pageNumber, int pageSize);
         Task<Plan> GetPlan(int planId);
-        Task<int> Add(PlanFeature plan);
+        Task<bool> Add(PlanFeature plan);
         Task<PlanFeature> GetPlanFeature(int id);
         Task<bool> UpdatePlanFeature(PlanFeature planFeature);
-         bool PlanFeatureExists(int id);
+        Task<bool> RemovePlanFeature(PlanFeature planFeature);
+        bool PlanFeatureExists(int id);
+        Task<bool> PlanFeatureExists(int planId, int featureId);
+
         /*********************************** START GET CONTEXT ***********************************/
-        bool ExistPlanFeatureContext(int? id);
+        bool PlanFeatureContextExist(int? id);
         DbSet<PlanFeature> GetPlanFeatureContext();
         DbSet<Plan> GetPlanContext();
         DbSet<Feature> GetFeatureContext();

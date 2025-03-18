@@ -9,8 +9,10 @@ using subscription_system.Areas.Admin.Models.ViewModel.Plan;
 using subscription_system.Services;
 using subscription_system.Mapper;
 using subscription_system.Areas.Admin.Models.ViewModel.Feature;
+using Microsoft.AspNetCore.Authorization;
 
 namespace subscription_system.Areas.Admin.Controllers {
+    [Authorize(Roles = "SystemAdmin")]
     [Area("Admin")]
     public class PlansController : BaseController {
         private readonly IPlanService _planService;
@@ -52,15 +54,6 @@ namespace subscription_system.Areas.Admin.Controllers {
         }
 
 
-        //NOTE:
-        //TODO:
-        //OPTIMIZE: 
-        //BUG:
-        //DISCUSS:
-        //FIXME:
-        //STEP:
-        //IMPORTANT:
-
         // GET: Admin/AdminPlanCreateViewModels/Create
         public async Task<IActionResult> Create() {
 
@@ -77,7 +70,7 @@ namespace subscription_system.Areas.Admin.Controllers {
                 Name = "",
                 Price = 0,
                 TrialPeriod = 0,
-                FeaturesSelected = new List<int>()
+               FeaturesSelected = new List<int>()
             };
             return View(plancreate);
         }
@@ -93,11 +86,13 @@ namespace subscription_system.Areas.Admin.Controllers {
             try {
                 if (ModelState.IsValid) {
 
-
+                    List<int> featuresSelected=adminPlanCreateViewModel.FeaturesSelected;
                     Plan plan = _planMapper.Map(adminPlanCreateViewModel);
 
-                    var inserted = await _planService.AddPlanAsync(plan);
+                    var inserted = await _planService.AddPlanAsync(plan,featuresSelected);
+                    
                     return RedirectToAction(nameof(Index), "PlanFeatures", new { area = "Admin", planId = plan.Id });
+
                 }
                 return View(adminPlanCreateViewModel);
 

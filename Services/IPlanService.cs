@@ -9,7 +9,7 @@ namespace subscription_system.Services {
         Task<List<Feature>> GetFeaturesListAsync();
 
         //INSERT FUNCTIONS
-        Task<bool> AddPlanAsync(Plan plan);
+        Task<bool> AddPlanAsync(Plan plan, List<int> featuresSelected);
         // UPDATE FUNCTIONS
         Task<bool> UpdatePlanAsync(Plan plan);
         //CHECK FUNCTIONS

@@ -36,8 +36,8 @@ namespace subscription_system.Areas.Admin.Models.ViewModel.Plan
 
         [
             Display(Name = "Plan activo"),
-            Required(ErrorMessage ="El precio es requerido"),
-            Range(0.01, double.MaxValue, ErrorMessage ="El precio debe de ser mayor a 0")
+            Required(ErrorMessage ="El estado es requerido"),
+          //  Range(0, 1, ErrorMessage ="El estado activo o inactivo")
         ]
         public bool Active { set; get; } = true;
 
@@ -56,9 +56,10 @@ namespace subscription_system.Areas.Admin.Models.ViewModel.Plan
         public int TrialPeriod { set; get; } = 0;
 
 
-        public List<AdminFeatureVM> FeaturesAvialable { set; get; } = new List<AdminFeatureVM>();
+        public ICollection<AdminFeatureVM> FeaturesAvialable { set; get; } = new List<AdminFeatureVM>();
 
         [NotMapped]
         public List<int> FeaturesSelected { get; set; } = new List<int>();
-    }
+  
+        }
 }

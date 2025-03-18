@@ -21,40 +21,37 @@ using subscription_system.Areas.Admin.Models.ViewModel.Plan;
 using Microsoft.AspNetCore.Http.HttpResults;
 using subscription_system.Views.Shared.Paginate;
 using subscription_system.Services;
-namespace subscription_system.Areas.Admin.Controllers
-{
+namespace subscription_system.Areas.Admin.Controllers {
 
-    //   [Authorize(Roles = "SystemAdmin")]
+    [Authorize(Roles = "SystemAdmin")]
     [Area("Admin")]
     [Route("Admin/Plan/{planId}/PlanFeatures/{action}/{id?}")]
-    public class PlanFeaturesController : BaseController
-    {
-      //  private readonly ApplicationDbContext _context;
-        private readonly  ILogger<PlanFeaturesController> _logger;
+    public class PlanFeaturesController : BaseController {
+        //  private readonly ApplicationDbContext _context;
+        private readonly ILogger<PlanFeaturesController> _logger;
 
         private readonly IPlanFeatureService _featureService;
-        public PlanFeaturesController(PlanFeatureService featureService, ILogger<PlanFeaturesController> logger)
-        {
+        public PlanFeaturesController(PlanFeatureService featureService, ILogger<PlanFeaturesController> logger) {
             _featureService = featureService;
             _logger = logger;
         }
 
-        // GET: Admin/PlanFeatures
-        public async Task<IActionResult> Index(int planId, string sortOrder,  string currentFilter,string searchString,int? pageNumber)
-        {
-            int pageSize = 2;
+        // GET: Admin/PlanFeatures 
+
+        // TODO: aqui estube tratando de aplicar paginacion????
+        public async Task<IActionResult> Index(int planId, string sortOrder, string currentFilter, string searchString, int? pageNumber) {
+            int pageSize = 5;
             var viewModel = await _featureService.GetFeaturesViewModel(planId, sortOrder, searchString, pageNumber ?? 1, pageSize);
             return View(viewModel);
         }
 
         // GET: Admin/PlanFeatures/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (_featureService.ExistPlanFeatureContext(id))return NotFound();
+        public async Task<IActionResult> Details(int? id) {
+            if (_featureService.PlanFeatureContextExist(id)) return NotFound();
 
             var planFeature = await _featureService.GetPlanFeature(id ?? 0);
-         if (planFeature == null) return NotFound();
-            
+            if (planFeature == null) return NotFound();
+
 
             return View(planFeature);
         }
@@ -65,24 +62,26 @@ namespace subscription_system.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(int planId,/* [Bind("NewFeature.FeatureId")] */AdminPlanFeaturesVM model)
-        {
+        public async Task<IActionResult> Create(int planId,/* [Bind("NewFeature.FeatureId")] */AdminPlanFeaturesVM model) {
             try {
-                PlanFeature planFeature = new ()
-                {
+                int featureId = model.NewFeature.FeatureId;
+                if (!await _featureService.PlanFeatureExists(planId, featureId)) {
+                    Alert(Enums.NotificationType.Info, "Esta caracteristica ya esta asociada con este plan");
+                    RedirectToAction(nameof(Index), StatusCodes.Status200OK);
+                }
+                PlanFeature planFeature = new() {
                     PlanId = planId,
                     FeatureId = model.NewFeature.FeatureId
                 };
 
                 var saveit = await _featureService.Add(planFeature);
 
-             
-              
+
+
             } catch (DbUpdateException ex) {
                 Alert(Enums.NotificationType.Error, "No se pudo ralizar la acción, por favor intentelo nuevamente", "Error al guardar los datos");
                 _logger.LogInformation("DbUpdateException", ex.ToString());
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 Alert(Enums.NotificationType.Error, "No se pudo ralizar la acción, por favor intentelo nuevamente", "Error interno");
                 _logger.LogInformation("Exception", ex.ToString());
             }
@@ -91,12 +90,11 @@ namespace subscription_system.Areas.Admin.Controllers
         }
 
         // GET: Admin/PlanFeatures/Edit/5
-        public async Task<IActionResult> Edit(int planId, int id)
-        {
-            if (_featureService.ExistPlanFeatureContext(id))return NotFound();
-            
+        public async Task<IActionResult> Edit(int planId, int id) {
+            if (_featureService.PlanFeatureContextExist(id)) return NotFound();
+
             ViewData["FeatureId"] = new SelectList(_featureService.GetFeatureContext(), "Id", "Description");
-            
+
             Task<Plan> plantask = _featureService.GetPlan(planId);
             Plan plan = await plantask;
             if (plan != null)
@@ -104,26 +102,24 @@ namespace subscription_system.Areas.Admin.Controllers
 
 
             var planFeature = await _featureService.GetPlanFeature(id);
-            if (planFeature == null)
-            {
+            if (planFeature == null) {
                 return NotFound();
             }
 
-            AdminPlanFeatureVM planFeatureViewModel = new ()
-            {
+            AdminPlanFeatureVM planFeatureViewModel = new() {
                 Id = planFeature.Id,
                 FeatureId = planFeature.FeatureId,
                 PlanId = planFeature.PlanId,
             };
-            
-            
-            
+
+
+
             if (plan != null)
                 ViewData["PlanName"] = plan.Name;
-                ViewData["FeatureId"] = new SelectList(_featureService.GetFeatureContext(), "Id", "Description", planFeature.FeatureId);
+            ViewData["FeatureId"] = new SelectList(_featureService.GetFeatureContext(), "Id", "Description", planFeature.FeatureId);
             ViewData["PlanId"] = new SelectList(_featureService.GetPlanContext(), "Id", "Description", planFeature.PlanId);
 
-          
+
 
 
 
@@ -135,34 +131,24 @@ namespace subscription_system.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,PlanId,FeatureId")] AdminPlanFeatureVM planFeatureViewModel)
-        {
-            if (id != planFeatureViewModel.Id)
-            {
+        public async Task<IActionResult> Edit(int id, [Bind("Id,PlanId,FeatureId")] AdminPlanFeatureVM planFeatureViewModel) {
+            if (id != planFeatureViewModel.Id) {
                 return NotFound();
             }
-            PlanFeature planFeature = new ()
-            {
+            PlanFeature planFeature = new() {
                 Id = planFeatureViewModel.Id,
                 PlanId = planFeatureViewModel.PlanId,
                 FeatureId = planFeatureViewModel.FeatureId
             };
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                  await  _featureService.UpdatePlanFeature(planFeature);
-                  
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!_featureService.PlanFeatureExists(planFeatureViewModel.Id))
-                    {
+            if (ModelState.IsValid) {
+                try {
+                    await _featureService.UpdatePlanFeature(planFeature);
+
+                } catch (DbUpdateConcurrencyException) {
+                    if (!_featureService.PlanFeatureExists(planFeatureViewModel.Id)) {
                         return NotFound();
-                    }
-                    else
-                    {
+                    } else {
                         throw;
                     }
                 }
@@ -174,17 +160,16 @@ namespace subscription_system.Areas.Admin.Controllers
         }
 
         // GET: Admin/PlanFeatures/Delete/5
-        public  IActionResult Delete(int? id)
-        {
-            if (_featureService.GetPlanFeatureContext() == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.PlanFeature'  is null.");
-            }
-            
+        public async Task<IActionResult> Delete(int id) {
+
+            PlanFeature planfeture = await _featureService.GetPlanFeature(id);
+            bool deleted = await _featureService.RemovePlanFeature(planfeture);
+            if (deleted) { 
+                Alert(Enums.NotificationType.Success, "caracteristica eliminada"); 
+                } else {
+                Alert(Enums.NotificationType.Error, "No fue Posible eliminar la caracteristica");
+                }
             return RedirectToAction(nameof(Index));
         }
-
-      
-      
     }
 }

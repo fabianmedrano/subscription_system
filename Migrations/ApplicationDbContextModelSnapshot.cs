@@ -159,7 +159,7 @@ namespace subscription_system.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("subscription_system.Areas.Admin.Models.ViewModel.AdminPlanHistoryViewModel", b =>
+            modelBuilder.Entity("subscription_system.Areas.Admin.Models.ViewModel.Feature.AdminFeatureVM", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -167,28 +167,27 @@ namespace subscription_system.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("ChangeDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("NewDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OldDescription")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PlanId")
+                    b.Property<int?>("AdminPlanCreateVMId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PlanId");
+                    b.HasIndex("AdminPlanCreateVMId");
 
-                    b.ToTable("AdminPlanHistoryViewModel");
+                    b.ToTable("AdminFeatureVM");
                 });
 
-            modelBuilder.Entity("subscription_system.Areas.Admin.Models.ViewModel.AdminPlanViewModel", b =>
+            modelBuilder.Entity("subscription_system.Areas.Admin.Models.ViewModel.Plan.AdminPlanCreateVM", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -221,6 +220,35 @@ namespace subscription_system.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("AdminPlanCreateViewModel");
+                });
+
+            modelBuilder.Entity("subscription_system.Areas.Admin.Models.ViewModel.PlanHistory.AdminPlanHistoryVM", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("ChangeDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("NewDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OldDescription")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PlanId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlanId");
+
+                    b.ToTable("AdminPlanHistoryViewModel");
                 });
 
             modelBuilder.Entity("subscription_system.Models.Currency", b =>
@@ -412,7 +440,6 @@ namespace subscription_system.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UserId")
-                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
@@ -601,9 +628,16 @@ namespace subscription_system.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("subscription_system.Areas.Admin.Models.ViewModel.AdminPlanHistoryViewModel", b =>
+            modelBuilder.Entity("subscription_system.Areas.Admin.Models.ViewModel.Feature.AdminFeatureVM", b =>
                 {
-                    b.HasOne("subscription_system.Models.Plan", "Plan")
+                    b.HasOne("subscription_system.Areas.Admin.Models.ViewModel.Plan.AdminPlanCreateVM", null)
+                        .WithMany("FeaturesAvialable")
+                        .HasForeignKey("AdminPlanCreateVMId");
+                });
+
+            modelBuilder.Entity("subscription_system.Areas.Admin.Models.ViewModel.PlanHistory.AdminPlanHistoryVM", b =>
+                {
+                    b.HasOne("subscription_system.Areas.Admin.Models.ViewModel.Plan.AdminPlanCreateVM", "Plan")
                         .WithMany()
                         .HasForeignKey("PlanId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -667,9 +701,7 @@ namespace subscription_system.Migrations
 
                     b.HasOne("subscription_system.Models.User", "User")
                         .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Discount");
 
@@ -695,6 +727,11 @@ namespace subscription_system.Migrations
                     b.Navigation("Currency");
 
                     b.Navigation("Subscription");
+                });
+
+            modelBuilder.Entity("subscription_system.Areas.Admin.Models.ViewModel.Plan.AdminPlanCreateVM", b =>
+                {
+                    b.Navigation("FeaturesAvialable");
                 });
 #pragma warning restore 612, 618
         }

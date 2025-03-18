@@ -24,19 +24,29 @@ namespace subscription_system.Services
            _planMapper = planMapper;
         }
 
+
+        //NOTICE: With this code the data is louding ever single time from database, though is no showing  all de content, mabey  a better option is just load the data requered   
         public async Task<AdminPlanFeaturesVM> GetFeaturesViewModel(int planId, string sortOrder, string searchString, int pageNumber, int pageSize)
         {
-         
-
-            // Lógica para obtener los datos del plan
             Plan plan = await GetPlan(planId);
             AdminPlanCreateVM planVM = _planMapper.Map(plan);
 
-            // Lógica para obtener las características del plan
-            var featuresQuery = GetFeaturesQuery(planId, searchString, sortOrder);
+            var featuresQuery = GetFeaturesQuery(planId , searchString, sortOrder);
 
-            // Lógica para la paginación
-            var features = await PaginateFeatures(featuresQuery, pageNumber, pageSize);
+            int totalRecords = await featuresQuery.CountAsync();
+
+           if (pageNumber < 1) {
+                pageNumber = 1;
+            } else if (pageNumber > (int)Math.Ceiling(totalRecords / (double)pageSize)) {
+                pageNumber = (int)Math.Ceiling(totalRecords / (double)pageSize);
+            }
+
+
+            var features = new PaginatedList<AdminFeatureVM>(new List<AdminFeatureVM>(), 0, pageNumber, pageSize);
+            if (totalRecords !=0) {
+                 features = await PaginateFeatures(featuresQuery, pageNumber, pageSize);
+            } 
+
             var feate = _context.Feature.ToList();
             return new AdminPlanFeaturesVM
             {
@@ -50,42 +60,39 @@ namespace subscription_system.Services
         
         public Task<Plan> GetPlan(int planId) => _context.Plan.Where(p => p.Id == planId).FirstAsync();
 
+        public async Task<PlanFeature> GetPlanFeature(int id) => await _context.PlanFeature.FirstAsync(p => p.Id == id);
 
-
-
-
-
-        public async Task<int> Add(PlanFeature plan) {
+        public async Task<bool> Add(PlanFeature plan) {
             _context.PlanFeature.Add(plan);
-            return await _context.SaveChangesAsync();
+            return (await _context.SaveChangesAsync()>0);
         }
-
-        public async Task<PlanFeature> GetPlanFeature(int id) { 
-            return await _context.PlanFeature.FirstAsync(p => p.Id == id);
-        }
-
+ 
         public async Task<bool> UpdatePlanFeature(PlanFeature planFeature)
         {
             _context.Update(planFeature);
             int rowsAffected = await _context.SaveChangesAsync();
             return (rowsAffected > 0);
         }
-        public async Task<bool> Delete(PlanFeature planFeature)
-        {
-      
-            if (planFeature != null)
-            {
-                _context.PlanFeature.Remove(planFeature);
-            }
 
-            int rowsAffected= await _context.SaveChangesAsync();
-            return (rowsAffected > 0);
+        public async Task<bool> RemovePlanFeature(PlanFeature planFeature) {
+            
+            if (_context == null) 
+                return false; 
+
+            _context.PlanFeature.Remove(planFeature);
+
+            int rowsAffected = await _context.SaveChangesAsync();
+
+            return rowsAffected > 0;
         }
 
-        public bool PlanFeatureExists(int id)
-        {
-            return (_context.PlanFeature?.Any(e => e.Id == id)).GetValueOrDefault();
-        }
+    
+        // EXIST FUNCIONTIONS
+
+        public bool PlanFeatureExists(int id) => (_context.PlanFeature?.Any(e => e.Id == id)).GetValueOrDefault();
+
+        public async Task<bool> PlanFeatureExists(int planId,int  featureId) =>  await _context.PlanFeature.AnyAsync(pf => pf.PlanId == planId && pf.FeatureId == featureId);
+            
         /*********************************** START GET CONTEXT ***********************************/
         public async Task<PlanFeature> GetFeatureContext(int id)
         {
@@ -94,18 +101,18 @@ namespace subscription_system.Services
            .Include(p => p.Plan)
            .FirstOrDefaultAsync(m => m.Id == id) ?? new PlanFeature();
         }
-        public bool ExistPlanFeatureContext(int? id) => (id == null || _context.PlanFeature == null);
+
+        public bool PlanFeatureContextExist(int? id) => (id == null || _context.PlanFeature == null);
 
         public DbSet<PlanFeature> GetPlanFeatureContext() => _context.PlanFeature;
+
         public DbSet<Plan> GetPlanContext() => _context.Plan;
 
         public DbSet<Feature> GetFeatureContext() => _context.Feature;
 
         /*********************************** END GET CONTEXT ***********************************/
 
-        //////////
-        ///
-        private IQueryable<AdminFeatureVM> GetFeaturesQuery(int planId, string searchString, string sortOrder)
+        private IQueryable<AdminFeatureVM> GetFeaturesQuery(int planId , string searchString, string sortOrder)
         {
             //NOTE: get plan feature 
             var applicationDbContext = _context.Feature
@@ -129,7 +136,8 @@ namespace subscription_system.Services
             return applicationDbContext;
         }
 
-        private async Task<PaginatedList<AdminFeatureVM>> PaginateFeatures(IQueryable<AdminFeatureVM> featuresQuery, int pageSize, int pageNumber )
+
+        private async Task<PaginatedList<AdminFeatureVM>> PaginateFeatures(IQueryable<AdminFeatureVM> featuresQuery, int pageNumber, int pageSize)
         {
             return  await PaginatedList<AdminFeatureVM>.CreateAsync(featuresQuery.AsNoTracking(), pageNumber, pageSize);
         }
