@@ -12,7 +12,7 @@ using subscription_system.Services;
 using subscription_system.TagHelpers;
 
 //TODO: inyectar dependencia , para poder utilizar IHTML
-//NOTE: investicar como se inyectan dependencias
+
 /*
  services.AddTransient<CustomTagHelper>();
  */

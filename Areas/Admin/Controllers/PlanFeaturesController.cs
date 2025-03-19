@@ -166,9 +166,9 @@ namespace subscription_system.Areas.Admin.Controllers {
             bool deleted = await _featureService.RemovePlanFeature(planfeture);
             if (deleted) { 
                 Alert(Enums.NotificationType.Success, "caracteristica eliminada"); 
-                } else {
+            } else {
                 Alert(Enums.NotificationType.Error, "No fue Posible eliminar la caracteristica");
-                }
+            }
             return RedirectToAction(nameof(Index));
         }
     }
